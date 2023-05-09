@@ -113,6 +113,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         jpfConfirmaSenha.setToolTipText("Informe a mesma senha do campo acima");
         jpfConfirmaSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jpfConfirmaSenha.setCaretColor(new java.awt.Color(0, 0, 0));
+        jpfConfirmaSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jpfConfirmaSenhaFocusLost(evt);
+            }
+        });
 
         jtfNome.setBackground(new java.awt.Color(255, 255, 255));
         jtfNome.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -259,6 +264,15 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jpfSenhaFocusLost
+
+    private void jpfConfirmaSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpfConfirmaSenhaFocusLost
+        // TODO add your handling code here:
+        if (jpfConfirmaSenha == jpfSenha) {
+            JOptionPane.showMessageDialog(this, "Senhas conferem");
+        } else {
+            JOptionPane.showMessageDialog(this, "Senhas não conferem");
+        }
+    }//GEN-LAST:event_jpfConfirmaSenhaFocusLost
 
     /**
      * @param args the command line arguments
