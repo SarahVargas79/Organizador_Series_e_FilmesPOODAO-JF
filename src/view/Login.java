@@ -60,6 +60,7 @@ public class Login extends javax.swing.JFrame {
         jbCriarConta = new javax.swing.JButton();
         jbEntrar = new javax.swing.JButton();
         jpfSenha = new javax.swing.JPasswordField();
+        jLabel6 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -77,38 +78,52 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(153, 51, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Login");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("E-mail");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, -1, -1));
 
         jtfEmail.setBackground(new java.awt.Color(0, 0, 0));
         jtfEmail.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtfEmail.setForeground(new java.awt.Color(255, 255, 255));
         jtfEmail.setToolTipText("Informa e-mail cadastrado ");
-        jtfEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jtfEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jtfEmail.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jtfEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 231, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 231, 10));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Senha");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, -1, -1));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 231, 10));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(19, 196, 19));
         jLabel4.setText("Esqueceu a senha?");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, -1, -1));
 
         jbCriarConta.setBackground(new java.awt.Color(0, 0, 204));
         jbCriarConta.setFont(new java.awt.Font("Segoe UI Black", 1, 15)); // NOI18N
         jbCriarConta.setForeground(new java.awt.Color(255, 255, 255));
         jbCriarConta.setText("Criar Conta");
+        jbCriarConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCriarContaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, -1, -1));
 
         jbEntrar.setBackground(new java.awt.Color(0, 0, 204));
         jbEntrar.setFont(new java.awt.Font("Segoe UI Black", 1, 15)); // NOI18N
@@ -119,62 +134,18 @@ public class Login extends javax.swing.JFrame {
                 jbEntrarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
 
         jpfSenha.setBackground(new java.awt.Color(0, 0, 0));
         jpfSenha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jpfSenha.setForeground(new java.awt.Color(255, 255, 255));
         jpfSenha.setToolTipText("Informe senha cadastrada");
-        jpfSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jpfSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jpfSenha.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jpfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 231, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jLabel1))
-                    .addComponent(jLabel4)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbCriarConta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(jbEntrar))
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jtfEmail)
-                    .addComponent(jSeparator1)
-                    .addComponent(jSeparator2)
-                    .addComponent(jpfSenha))
-                .addContainerGap(83, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbCriarConta)
-                    .addComponent(jbEntrar))
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/capa login.jpg"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,6 +192,12 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbEntrarActionPerformed
 
+    private void jbCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCriarContaActionPerformed
+        // TODO add your handling code here:
+        TelaCadastro telaCad = new TelaCadastro();
+        telaCad.setVisible(true);
+    }//GEN-LAST:event_jbCriarContaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -261,6 +238,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;

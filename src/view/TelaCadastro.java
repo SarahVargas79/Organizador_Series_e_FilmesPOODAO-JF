@@ -6,6 +6,9 @@
 package view;
 
 import javax.swing.JOptionPane;
+import model.Usuario;
+import services.ServicosFactory;
+import services.UsuarioServicos;
 import util.Validadores;
 
 /**
@@ -54,18 +57,19 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        jbCancelar = new javax.swing.JButton();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jpfSenha = new javax.swing.JPasswordField();
-        jpfConfirmaSenha = new javax.swing.JPasswordField();
         jtfNome = new javax.swing.JTextField();
         jtfEmail = new javax.swing.JTextField();
-        jbSalvar = new javax.swing.JButton();
-        jbCancelar = new javax.swing.JButton();
+        jpfSenha = new javax.swing.JPasswordField();
         jbLimpar = new javax.swing.JButton();
+        jbSalvar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jpfConfirmaSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela de Cadastro");
@@ -73,51 +77,37 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(68, 84, 84));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 51));
         jLabel1.setText("Cadastro de Usuário");
 
-        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jbCancelar.setBackground(new java.awt.Color(0, 0, 204));
+        jbCancelar.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
+        jbCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        jbCancelar.setText("Cancelar");
+        jbCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCancelarActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
+        jLayeredPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nome:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("E-mail:");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Senha:");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Confirmar senha:");
 
-        jpfSenha.setBackground(new java.awt.Color(255, 255, 255));
-        jpfSenha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpfSenha.setForeground(new java.awt.Color(0, 0, 0));
-        jpfSenha.setToolTipText("Informe senha válida");
-        jpfSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jpfSenha.setCaretColor(new java.awt.Color(0, 0, 0));
-        jpfSenha.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jpfSenhaFocusLost(evt);
-            }
-        });
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("E-mail:");
 
-        jpfConfirmaSenha.setBackground(new java.awt.Color(255, 255, 255));
-        jpfConfirmaSenha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpfConfirmaSenha.setForeground(new java.awt.Color(0, 0, 0));
-        jpfConfirmaSenha.setToolTipText("Informe a mesma senha do campo acima");
-        jpfConfirmaSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jpfConfirmaSenha.setCaretColor(new java.awt.Color(0, 0, 0));
-        jpfConfirmaSenha.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jpfConfirmaSenhaFocusLost(evt);
-            }
-        });
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Senha:");
 
         jtfNome.setBackground(new java.awt.Color(255, 255, 255));
         jtfNome.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -143,83 +133,148 @@ public class TelaCadastro extends javax.swing.JFrame {
             }
         });
 
-        jbSalvar.setBackground(new java.awt.Color(0, 0, 204));
-        jbSalvar.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
-        jbSalvar.setForeground(new java.awt.Color(255, 255, 255));
-        jbSalvar.setText("Salvar");
-
-        jbCancelar.setBackground(new java.awt.Color(0, 0, 204));
-        jbCancelar.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
-        jbCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        jbCancelar.setText("Cancelar");
+        jpfSenha.setBackground(new java.awt.Color(255, 255, 255));
+        jpfSenha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jpfSenha.setForeground(new java.awt.Color(0, 0, 0));
+        jpfSenha.setToolTipText("Informe senha válida");
+        jpfSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jpfSenha.setCaretColor(new java.awt.Color(0, 0, 0));
+        jpfSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jpfSenhaFocusLost(evt);
+            }
+        });
 
         jbLimpar.setBackground(new java.awt.Color(0, 0, 204));
-        jbLimpar.setFont(new java.awt.Font("Segoe UI Black", 0, 15)); // NOI18N
+        jbLimpar.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
         jbLimpar.setForeground(new java.awt.Color(255, 255, 255));
         jbLimpar.setText("Limpar");
+        jbLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimparActionPerformed(evt);
+            }
+        });
+
+        jbSalvar.setBackground(new java.awt.Color(0, 0, 204));
+        jbSalvar.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
+        jbSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        jbSalvar.setText("Salvar");
+        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalvarActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Cadastrar Usuário.png"))); // NOI18N
+
+        jpfConfirmaSenha.setBackground(new java.awt.Color(255, 255, 255));
+        jpfConfirmaSenha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jpfConfirmaSenha.setForeground(new java.awt.Color(0, 0, 0));
+        jpfConfirmaSenha.setToolTipText("Informe a mesma senha do campo acima");
+        jpfConfirmaSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jpfConfirmaSenha.setCaretColor(new java.awt.Color(0, 0, 0));
+        jpfConfirmaSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jpfConfirmaSenhaFocusLost(evt);
+            }
+        });
+
+        jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jtfNome, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jtfEmail, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jpfSenha, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jbLimpar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jbSalvar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jpfConfirmaSenha, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel6)
+                            .addComponent(jpfSenha)
+                            .addComponent(jtfEmail)
+                            .addComponent(jtfNome)
+                            .addComponent(jpfConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbLimpar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbSalvar)
+                        .addGap(34, 34, 34))))
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jpfConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbSalvar)
+                    .addComponent(jbLimpar))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(jLabel1)
-                .addContainerGap(109, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbLimpar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbSalvar)
-                        .addGap(29, 29, 29))
+                        .addGap(205, 205, 205)
+                        .addComponent(jbCancelar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jpfConfirmaSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                            .addComponent(jpfSenha)
-                            .addComponent(jtfEmail)
-                            .addComponent(jtfNome))
-                        .addGap(28, 28, 28))))
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jpfConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbCancelar)
-                    .addComponent(jbLimpar)
-                    .addComponent(jbSalvar))
-                .addGap(15, 15, 15))
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -249,7 +304,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!jtfEmail.getText().equals("")) {
             if (!Validadores.isValidEmailAddressRegex(jtfEmail.getText())) {
-                JOptionPane.showMessageDialog(this, "E-mail inválido.", "Erro e-mail", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "E-mail inválido. Digite o formato correto!", "Erro e-mail", JOptionPane.ERROR_MESSAGE);
                 jtfEmail.requestFocus();
             }
         }
@@ -259,7 +314,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!new String(jpfSenha.getPassword()).equals("")) {
             if (!Validadores.senhaForte(new String(jpfSenha.getPassword()))) {
-                JOptionPane.showMessageDialog(this, "Senha inválida.", "Erro senha", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Sua senha deve conter no mínimo 8 caracteres, \nletra maiúscula e minúscula, \nnúmero e caractér especial .", "Erro senha", JOptionPane.ERROR_MESSAGE);
                 jpfSenha.requestFocus();
             }
         }
@@ -267,12 +322,62 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void jpfConfirmaSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpfConfirmaSenhaFocusLost
         // TODO add your handling code here:
-        if (jpfConfirmaSenha == jpfSenha) {
+        String senha = new String(jpfSenha.getPassword());
+        String confirSenha = new String(jpfConfirmaSenha.getPassword());
+
+        if (senha.equals(confirSenha)) {
             JOptionPane.showMessageDialog(this, "Senhas conferem");
         } else {
-            JOptionPane.showMessageDialog(this, "Senhas não conferem");
+            JOptionPane.showMessageDialog(this, "Senhas não conferem", "Erro confirmar senha", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jpfConfirmaSenhaFocusLost
+
+    private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
+        // TODO add your handling code here:
+        if (jbLimpar.getText().equals("Limpar")) {
+            limparCampos();
+        } else {
+            limparCampos();
+            jbLimpar.setText("Limpar");
+            jbSalvar.setText("Salvar");
+        }
+    }
+
+    public void limparCampos() {
+        jtfNome.setText("");
+        jtfEmail.setText("");
+        jpfSenha.setText("");
+        jpfConfirmaSenha.setText("");
+        jtfNome.requestFocus();
+    }//GEN-LAST:event_jbLimparActionPerformed
+
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+        // TODO add your handling code here:
+        if (validaInputs()) {
+            //Pegar dados da tela para salvar
+            int idUsuario = 0;
+            String nomeCliente = jtfNome.getText().toUpperCase();
+            String email = jtfEmail.getText();
+            String senha = new String(jpfSenha.getPassword());
+            String confirmarSenha = new String(jpfConfirmaSenha.getPassword());
+            UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
+            Usuario usu = new Usuario(idUsuario, nomeCliente, email, senha, confirmarSenha);
+            
+            if (jbSalvar.getText().equals("Salvar")) {
+                usuarioS.cadUsuario(usu);
+            } else {
+                JOptionPane.showMessageDialog(this, "Cadastro realizado coms sucesso!");
+                usuarioS.atualizarUsuario(usu);
+                jbLimpar.doClick();
+            }
+            limparCampos();
+        }
+    }//GEN-LAST:event_jbSalvarActionPerformed
+
+    private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jbCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,8 +420,9 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbLimpar;
     private javax.swing.JButton jbSalvar;

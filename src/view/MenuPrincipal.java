@@ -29,6 +29,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -43,48 +44,61 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(1, 91, 1));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/capa menu.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(204, 255, 204));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0)));
 
         jMenu1.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/gerenciamento.png"))); // NOI18N
         jMenu1.setText("Gerenciamento");
         jMenu1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
 
         jMenuItem1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jMenuItem1.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/serie.png"))); // NOI18N
         jMenuItem1.setText("Série");
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jMenuItem2.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/film.png"))); // NOI18N
         jMenuItem2.setText("Filme");
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/configuracao.png"))); // NOI18N
         jMenu2.setText("Configuração");
         jMenu2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
 
         jMenuItem3.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jMenuItem3.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/vcard.png"))); // NOI18N
         jMenuItem3.setText("Usuário");
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sair.png"))); // NOI18N
         jMenu3.setText("Sair");
         jMenu3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
         jMenuBar1.add(jMenu3);
@@ -141,6 +155,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
