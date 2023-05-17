@@ -5,7 +5,12 @@
  */
 package view;
 
+import conexao.Conexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Usuario;
 import services.ServicosFactory;
 import services.UsuarioServicos;
@@ -210,14 +215,12 @@ public class TelaCadastro extends javax.swing.JFrame {
                             .addComponent(jpfSenha)
                             .addComponent(jtfEmail)
                             .addComponent(jtfNome)
-                            .addComponent(jpfConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(14, Short.MAX_VALUE))
+                            .addComponent(jpfConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbLimpar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbSalvar)
-                        .addGap(34, 34, 34))))
+                        .addComponent(jbSalvar)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,8 +276,8 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addComponent(jbCancelar)
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -362,12 +365,18 @@ public class TelaCadastro extends javax.swing.JFrame {
             String confirmarSenha = new String(jpfConfirmaSenha.getPassword());
             UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
             Usuario usu = new Usuario(idUsuario, nomeCliente, email, senha, confirmarSenha);
-            
-            if (jbSalvar.getText().equals("Salvar")) {
+
+            Usuario usuarios = new Usuario();
+            usuarios.setNomeUsuario(jtfNome.getText());
+            usuarios.setEmail(jtfEmail.getText());
+            usuarios.setSenha(new String(jpfSenha.getPassword()));
+            usuarios.setConfirmSenha(new String(jpfConfirmaSenha.getPassword()));
+
+            if ((jtfNome.getText().isEmpty()) || (jtfEmail.getText().isEmpty()) || (new String(jpfSenha.getPassword()).isEmpty()) || (new String(jpfConfirmaSenha.getPassword()).isEmpty())) {
                 usuarioS.cadUsuario(usu);
             } else {
-                JOptionPane.showMessageDialog(this, "Cadastro realizado coms sucesso!");
                 usuarioS.atualizarUsuario(usu);
+                JOptionPane.showMessageDialog(this, "Usuário " + jtfNome.getText() + " cadastro realizado com sucesso!");
                 jbLimpar.doClick();
             }
             limparCampos();
