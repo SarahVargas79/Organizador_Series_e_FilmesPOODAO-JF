@@ -375,10 +375,11 @@ public class TelaCadastro extends javax.swing.JFrame {
             if ((jtfNome.getText().isEmpty()) || (jtfEmail.getText().isEmpty()) || (new String(jpfSenha.getPassword()).isEmpty()) || (new String(jpfConfirmaSenha.getPassword()).isEmpty())) {
                 usuarioS.cadUsuario(usu);
             } else {
-                usuarioS.atualizarUsuario(usu);
+                usuarioS.cadUsuario(usu);
                 JOptionPane.showMessageDialog(this, "Usuário " + jtfNome.getText() + " cadastro realizado com sucesso!");
                 jbLimpar.doClick();
             }
+            
             limparCampos();
         }
     }//GEN-LAST:event_jbSalvarActionPerformed

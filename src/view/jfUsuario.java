@@ -6,6 +6,7 @@
 package view;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Usuario;
 import services.ServicosFactory;
 import services.UsuarioServicos;
@@ -21,8 +22,41 @@ public class jfUsuario extends javax.swing.JFrame {
      */
     public jfUsuario() {
         initComponents();
+        addRowToTable();
         jbExcluir.setVisible(false);
         this.setLocationRelativeTo(null);
+    }
+
+    public boolean validaInputs() {
+        if (jtfNome.getText().equals("")) {
+            jtfNome.requestFocus();
+            return false;
+        } else if (jtfEmail.getText().equals("")) {
+            jtfEmail.requestFocus();
+            return false;
+        } else if (new String(jpfSenha.getPassword()).equals("")) {
+            jpfSenha.requestFocus();
+            return false;
+        } else if (new String(jpfConfirmaSenha.getPassword()).equals("")) {
+            jpfConfirmaSenha.requestFocus();
+            return false;
+        }
+        return true;
+    }//fim validaInputs
+
+    private void addRowToTable() {
+        DefaultTableModel model = (DefaultTableModel) jtUsuarios.getModel();
+        model.getDataVector().removeAllElements();//Remove todas as linhas.
+        model.fireTableDataChanged();
+        Object rowData[] = new Object[4];//rowData é o vetor para popular a linha da tabela por coluna
+        UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
+        for (Usuario c : usuarioS.getUsuarios()) {//O vetor sempre começa em 0
+            rowData[0] = c.getNomeUsuario();
+            rowData[1] = c.getEmail();
+            rowData[2] = c.getSenha();
+            rowData[3] = c.getConfirmSenha();
+            model.addRow(rowData);//Add para popular.
+        }
     }
 
     /**
@@ -57,7 +91,7 @@ public class jfUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerência Usuário");
 
-        jPanel1.setBackground(new java.awt.Color(102, 0, 102));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 0));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 17)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -121,7 +155,7 @@ public class jfUsuario extends javax.swing.JFrame {
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 17)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Gerência Usuário");
@@ -134,9 +168,9 @@ public class jfUsuario extends javax.swing.JFrame {
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(113, 113, 113)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(113, 113, 113))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,7 +355,7 @@ public class jfUsuario extends javax.swing.JFrame {
         jtfEmail.setText("");
         jpfSenha.setText("");
         jpfConfirmaSenha.setText("");
-        jtfNome.requestFocus();                              
+        jtfNome.requestFocus();
     }//GEN-LAST:event_jbLimparActionPerformed
 
     private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
@@ -365,8 +399,25 @@ public class jfUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        // TODO add your handling code here:
-               
+        if (validaInputs()) {
+            //Pegar dados da tela para salvar
+            int idCliente = 0;
+            String nomeUsuario = jtfNome.getText().toUpperCase();
+            String email = jtfEmail.getText();
+            String senha = new String(jpfSenha.getPassword());
+            String telefone = new String(jpfSenha.getPassword());
+            ClienteServicos clienteS = ServicosFactory.getClienteServicos();
+
+            Cliente c = new Cliente(idCliente, nomeCliente, cpf, cnpj, endereco, telefone);
+            if (jbSalvar.getText().equals("Salvar")) {
+                clienteS.cadCliente(c);
+            } else {
+                clienteS.atualizarCliente(c);
+                jbLimpar.doClick();
+            }
+            limparCampos();
+            addRowToTable();
+        }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
     /**
@@ -425,4 +476,5 @@ public class jfUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfNome;
     // End of variables declaration//GEN-END:variables
+
 }

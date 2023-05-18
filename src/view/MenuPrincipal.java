@@ -32,10 +32,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jmiSerie = new javax.swing.JMenuItem();
+        jmiFilme = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jmiUsuario = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,17 +70,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Gerenciamento");
         jMenu1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
 
-        jMenuItem1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jMenuItem1.setForeground(new java.awt.Color(0, 0, 0));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/serie.png"))); // NOI18N
-        jMenuItem1.setText("Série");
-        jMenu1.add(jMenuItem1);
+        jmiSerie.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jmiSerie.setForeground(new java.awt.Color(0, 0, 0));
+        jmiSerie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/serie.png"))); // NOI18N
+        jmiSerie.setText("Série");
+        jMenu1.add(jmiSerie);
 
-        jMenuItem2.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jMenuItem2.setForeground(new java.awt.Color(0, 0, 0));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/film.png"))); // NOI18N
-        jMenuItem2.setText("Filme");
-        jMenu1.add(jMenuItem2);
+        jmiFilme.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jmiFilme.setForeground(new java.awt.Color(0, 0, 0));
+        jmiFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/film.png"))); // NOI18N
+        jmiFilme.setText("Filme");
+        jMenu1.add(jmiFilme);
 
         jMenuBar1.add(jMenu1);
 
@@ -89,11 +89,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Configuração");
         jMenu2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
 
-        jMenuItem3.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jMenuItem3.setForeground(new java.awt.Color(0, 0, 0));
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/vcard.png"))); // NOI18N
-        jMenuItem3.setText("Usuário");
-        jMenu2.add(jMenuItem3);
+        jmiUsuario.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jmiUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        jmiUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/vcard.png"))); // NOI18N
+        jmiUsuario.setText("Usuário");
+        jmiUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmiUsuario);
 
         jMenuBar1.add(jMenu2);
 
@@ -118,6 +123,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmiUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiUsuarioActionPerformed
+        // TODO add your handling code here:
+        jfUsuario janelaUsuario = new jfUsuario();
+        janelaUsuario.setVisible(true);
+    }//GEN-LAST:event_jmiUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,9 +171,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jmiFilme;
+    private javax.swing.JMenuItem jmiSerie;
+    private javax.swing.JMenuItem jmiUsuario;
     // End of variables declaration//GEN-END:variables
 }
