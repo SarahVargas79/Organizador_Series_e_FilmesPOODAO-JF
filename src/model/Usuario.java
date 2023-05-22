@@ -14,17 +14,17 @@ public class Usuario {
     private String nomeUsuario;
     private String email;
     private String senha;
-    private String confirmSenha;
+    private String confirmaSenha;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nomeUsuario, String email, String senha, String confirmSenha) {
+    public Usuario(int idUsuario, String nomeUsuario, String email, String senha, String confirmaSenha) {
         this.idUsuario = idUsuario;
         this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
-        this.confirmSenha = confirmSenha;
+        this.confirmaSenha = confirmaSenha;
     }
 
     public int getIdUsuario() {
@@ -59,20 +59,17 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getConfirmSenha() {
-        return confirmSenha;
+    public String getConfirmaSenha() {
+        return confirmaSenha;
     }
 
-    public void setConfirmSenha(String confirmSenha) {
-        this.confirmSenha = confirmSenha;
+    public void setConfirmaSenha(String confirmaSenha) {
+        this.confirmaSenha = confirmaSenha;
     }
 
     @Override
     public String toString() {
-        return                                                   "Nome do usuário = " + nomeUsuario + ", E-mail = " + email + ", Senha = " + senha + " Confirma senha = " + confirmSenha; 
-    }
-
-    
-    
+        return                                                   "Nome do usuário = " + nomeUsuario + ", E-mail = " + email + ", Senha = " + senha + " Confirma senha = " + confirmaSenha; 
+    }    
 }
 

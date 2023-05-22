@@ -61,6 +61,7 @@ public class CUsuario {//Vai se controlar toda a classe usuario.
         u1.setNomeUsuario("Emanuelly Rosa");
         u1.setEmail("emanuelly.rosa@outlook.com");
         u1.setSenha("Emanu.r07");
+        u1.setConfirmaSenha("Emanu.r07");
         this.addUsuario(u1);
 
         Usuario u2 = new Usuario();//sem problema de chamar geraID de novo vai somar mais 1 é a função dele.
@@ -68,6 +69,7 @@ public class CUsuario {//Vai se controlar toda a classe usuario.
         u2.setNomeUsuario("Murilo Dutra");
         u2.setEmail("murilo.dutra@gmail.com");
         u2.setSenha("Dutra_089");
+        u2.setConfirmaSenha("Dutra_089");
         this.addUsuario(u2);
     }
 

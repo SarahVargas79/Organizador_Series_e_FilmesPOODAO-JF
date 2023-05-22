@@ -50,11 +50,11 @@ public class jfUsuario extends javax.swing.JFrame {
         model.fireTableDataChanged();
         Object rowData[] = new Object[4];//rowData é o vetor para popular a linha da tabela por coluna
         UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
-        for (Usuario c : usuarioS.getUsuarios()) {//O vetor sempre começa em 0
-            rowData[0] = c.getNomeUsuario();
-            rowData[1] = c.getEmail();
-            rowData[2] = c.getSenha();
-            rowData[3] = c.getConfirmSenha();
+        for (Usuario usu : usuarioS.getUsuarios()) {//O vetor sempre começa em 0
+            rowData[0] = usu.getNomeUsuario();
+            rowData[1] = usu.getEmail();
+            rowData[2] = usu.getSenha();
+            rowData[3] = usu.getConfirmaSenha();
             model.addRow(rowData);//Add para popular.
         }
     }
@@ -246,6 +246,7 @@ public class jfUsuario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,13 +270,11 @@ public class jfUsuario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpfConfirmaSenha))
-                    .addComponent(jScrollPane1))
+                                .addComponent(jbFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jpfConfirmaSenha)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -379,6 +378,8 @@ public class jfUsuario extends javax.swing.JFrame {
         int resposta = JOptionPane.showOptionDialog(this, "Deseja realmente deletar este e-mail? ", "Deletar", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, resp, resp[0]);
         if (resposta == 0) {
             usuarioS.removerUsuario(email);
+            addRowToTable();
+            
             JOptionPane.showMessageDialog(this, "Usuario deletado com sucesso!");
         } else {
             JOptionPane.showMessageDialog(this, "Ok, operação cancelada!");
@@ -393,10 +394,10 @@ public class jfUsuario extends javax.swing.JFrame {
             String nomeUsuario = jtfNome.getText().toUpperCase();
             String email = jtfEmail.getText();
             String senha = new String(jpfSenha.getPassword());
-            String confirmaSenha = new String(jpfConfirmaSenha.getPassword());
+            String confirmarSenha = new String(jpfConfirmaSenha.getPassword());
             UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
 
-            Usuario c = new Usuario(idUsuario, nomeUsuario, email, senha, confirmaSenha);
+            Usuario c = new Usuario(idUsuario, nomeUsuario, email, senha, confirmarSenha);
             if (jbSalvar.getText().equals("Salvar")) {
                 usuarioS.cadUsuario(c);
             } else {
