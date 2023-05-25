@@ -5,6 +5,11 @@
  */
 package view;
 
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author sarin
@@ -37,7 +42,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmiFilme = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmiUsuario = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        jmiSair = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Menu Principal");
@@ -77,10 +83,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Gerenciamento");
         jMenu1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
 
+        jmiSerie.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmiSerie.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jmiSerie.setForeground(new java.awt.Color(0, 0, 0));
         jmiSerie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/serie.png"))); // NOI18N
+        jmiSerie.setMnemonic('S');
         jmiSerie.setText("Série");
+        jmiSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiSerieActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmiSerie);
 
         jmiFilme.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
@@ -96,9 +109,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Configuração");
         jMenu2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
 
+        jmiUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmiUsuario.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jmiUsuario.setForeground(new java.awt.Color(0, 0, 0));
         jmiUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/vcard.png"))); // NOI18N
+        jmiUsuario.setMnemonic('U');
         jmiUsuario.setText("Usuário");
         jmiUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,11 +124,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setForeground(new java.awt.Color(0, 0, 0));
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sair.png"))); // NOI18N
-        jMenu3.setText("Sair");
-        jMenu3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
-        jMenuBar1.add(jMenu3);
+        jmiSair.setForeground(new java.awt.Color(0, 0, 0));
+        jmiSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sair.png"))); // NOI18N
+        jmiSair.setText("Sair");
+        jmiSair.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jMenuItem1.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fechar.png"))); // NOI18N
+        jMenuItem1.setMnemonic('F');
+        jMenuItem1.setText("Fechar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jmiSair.add(jMenuItem1);
+
+        jMenuBar1.add(jmiSair);
 
         setJMenuBar(jMenuBar1);
 
@@ -137,6 +166,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         janelaUsuario.setVisible(true);
     }//GEN-LAST:event_jmiUsuarioActionPerformed
 
+    private void jmiSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSerieActionPerformed
+        // TODO add your handling code here:
+        jfSerie janelaSerie = new jfSerie();
+        janelaSerie.setVisible(true);
+    }//GEN-LAST:event_jmiSerieActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        close();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    public void close(){
+        WindowEvent closeEvent = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeEvent);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -177,10 +222,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem jmiFilme;
+    private javax.swing.JMenu jmiSair;
     private javax.swing.JMenuItem jmiSerie;
     private javax.swing.JMenuItem jmiUsuario;
     // End of variables declaration//GEN-END:variables

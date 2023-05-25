@@ -142,7 +142,7 @@ public class OrganizadorSeriesFilmesPOO {
             }
         } while (!forteSenha);
         idUsuario = cadUsuario.geraID();
-        Usuario usu = new Usuario(idUsuario, nomeUsuario, email, senha, confirmSenha);
+        Usuario usu = new Usuario(idUsuario, nomeUsuario, email, senha, confirmSenha, senha, senha, confirmSenha);
         cadUsuario.addUsuario(usu);
         usuarioS.cadUsuario(usu);
         System.out.println("\nUsuário cadastrado com sucesso!");

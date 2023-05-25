@@ -15,16 +15,23 @@ public class Usuario {
     private String email;
     private String senha;
     private String confirmaSenha;
+    private String senhaAtual;
+    private String novaSenha;
+    private String confirmaNovaSenha;
+    
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nomeUsuario, String email, String senha, String confirmaSenha) {
+    public Usuario(int idUsuario, String nomeUsuario, String email, String senha, String confirmaSenha, String senhaAtual, String novaSenha, String confirmaNovaSenha) {
         this.idUsuario = idUsuario;
         this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
         this.confirmaSenha = confirmaSenha;
+        this.senhaAtual = senhaAtual;
+        this.novaSenha = novaSenha;
+        this.confirmaNovaSenha = confirmaNovaSenha;
     }
 
     public int getIdUsuario() {
@@ -67,9 +74,34 @@ public class Usuario {
         this.confirmaSenha = confirmaSenha;
     }
 
+    public String getSenhaAtual() {
+        return senhaAtual;
+    }
+
+    public void setSenhaAtual(String senhaAtual) {
+        this.senhaAtual = senhaAtual;
+    }
+
+    public String getNovaSenha() {
+        return novaSenha;
+    }
+
+    public void setNovaSenha(String novaSenha) {
+        this.novaSenha = novaSenha;
+    }
+
+    public String getConfirmaNovaSenha() {
+        return confirmaNovaSenha;
+    }
+
+    public void setConfirmaNovaSenha(String confirmaNovaSenha) {
+        this.confirmaNovaSenha = confirmaNovaSenha;
+    }
+
     @Override
     public String toString() {
-        return                                                   "Nome do usuário = " + nomeUsuario + ", E-mail = " + email + ", Senha = " + senha + " Confirma senha = " + confirmaSenha; 
-    }    
+                return                                                   "Nome do usuário = " + nomeUsuario + ", E-mail = " + email + ", Senha = " + senha + " Confirma senha = " + confirmaSenha + ",| Senha atual = " + senhaAtual + ", Nova senha=" + novaSenha + ", Confirmar nova senha=" + confirmaNovaSenha; 
+    }
+       
 }
 

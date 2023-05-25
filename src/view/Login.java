@@ -55,11 +55,11 @@ public class Login extends javax.swing.JFrame {
         jtfEmail = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
+        jpfSenha = new javax.swing.JPasswordField();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
+        jlEsqueciSenha = new javax.swing.JLabel();
         jbCriarConta = new javax.swing.JButton();
         jbEntrar = new javax.swing.JButton();
-        jpfSenha = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -109,13 +109,26 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Senha");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, 60, -1));
 
+        jpfSenha.setBackground(new java.awt.Color(0, 0, 0));
+        jpfSenha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jpfSenha.setForeground(new java.awt.Color(255, 255, 255));
+        jpfSenha.setToolTipText("Informe senha cadastrada");
+        jpfSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jpfSenha.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jpfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, 231, -1));
+
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 231, 10));
 
-        jLabel4.setFont(new java.awt.Font("Monotype Corsiva", 1, 20)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(19, 196, 19));
-        jLabel4.setText("Esqueceu a senha?");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, 140, -1));
+        jlEsqueciSenha.setFont(new java.awt.Font("Monotype Corsiva", 1, 20)); // NOI18N
+        jlEsqueciSenha.setForeground(new java.awt.Color(19, 196, 19));
+        jlEsqueciSenha.setText("Esqueceu a senha?");
+        jlEsqueciSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlEsqueciSenhaMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jlEsqueciSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, 140, -1));
 
         jbCriarConta.setBackground(new java.awt.Color(0, 0, 204));
         jbCriarConta.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
@@ -138,14 +151,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jbEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 310, -1, -1));
-
-        jpfSenha.setBackground(new java.awt.Color(0, 0, 0));
-        jpfSenha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jpfSenha.setForeground(new java.awt.Color(255, 255, 255));
-        jpfSenha.setToolTipText("Informe senha cadastrada");
-        jpfSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jpfSenha.setCaretColor(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jpfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, 231, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/capa login.jpg"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 430, 480));
@@ -214,6 +219,12 @@ public class Login extends javax.swing.JFrame {
         telaCad.setVisible(true);
     }//GEN-LAST:event_jbCriarContaActionPerformed
 
+    private void jlEsqueciSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlEsqueciSenhaMouseClicked
+        // TODO add your handling code here:
+        RecuperacaoSenha recSenha = new RecuperacaoSenha();
+        recSenha.setVisible(true);
+    }//GEN-LAST:event_jlEsqueciSenhaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -253,7 +264,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -264,6 +274,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton jbCriarConta;
     private javax.swing.JButton jbEntrar;
+    private javax.swing.JLabel jlEsqueciSenha;
     private javax.swing.JPasswordField jpfSenha;
     private javax.swing.JTextField jtfEmail;
     // End of variables declaration//GEN-END:variables

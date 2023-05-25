@@ -92,7 +92,7 @@ public class jfUsuario extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(44, 62, 80));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 17)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nome:");
 
@@ -108,11 +108,11 @@ public class jfUsuario extends javax.swing.JFrame {
         jtfEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jtfEmail.setCaretColor(new java.awt.Color(0, 0, 0));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 17)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("E-mail:");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 1, 17)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Senha:");
 
@@ -122,7 +122,7 @@ public class jfUsuario extends javax.swing.JFrame {
         jpfSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jpfSenha.setCaretColor(new java.awt.Color(0, 0, 0));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 1, 17)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Confirmar senha:");
 
@@ -306,7 +306,7 @@ public class jfUsuario extends javax.swing.JFrame {
                     .addComponent(jbSalvar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -397,7 +397,7 @@ public class jfUsuario extends javax.swing.JFrame {
             String confirmarSenha = new String(jpfConfirmaSenha.getPassword());
             UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
 
-            Usuario c = new Usuario(idUsuario, nomeUsuario, email, senha, confirmarSenha);
+            Usuario c = new Usuario(idUsuario, nomeUsuario, email, senha, confirmarSenha, senha, senha, confirmarSenha);
             if (jbSalvar.getText().equals("Salvar")) {
                 usuarioS.cadUsuario(c);
             } else {
