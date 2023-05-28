@@ -21,12 +21,13 @@ public class Serie {
     private String genero;
     private int temporada;
     private int episodio;
+    private String caminhoImagem;
     private Usuario idUsuario;
 
     public Serie() {
     }
 
-    public Serie(int idSerie, String titulo, int anoLancamento, String nomeAtor, String nacionalidade, String genero, int temporada, int episodio, Usuario idUsuario) {
+    public Serie(int idSerie, String titulo, int anoLancamento, String nomeAtor, String nacionalidade, String genero, int temporada, int episodio, String caminhoImagem, Usuario idUsuario) {
         this.idSerie = idSerie;
         this.titulo = titulo;
         this.anoLancamento = anoLancamento;
@@ -35,6 +36,7 @@ public class Serie {
         this.genero = genero;
         this.temporada = temporada;
         this.episodio = episodio;
+        this.caminhoImagem = caminhoImagem;
         this.idUsuario = idUsuario;
     }
 
@@ -102,6 +104,14 @@ public class Serie {
         this.episodio = episodio;
     }
 
+    public String getCaminhoImagem() {
+        return caminhoImagem;
+    }
+
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
+    }
+
     public Usuario getIdUsuario() {
         return idUsuario;
     }
@@ -112,7 +122,7 @@ public class Serie {
 
     @Override
     public String toString() {
-        return "---" + "\nTitulo: \t\t" + titulo + "\nAno de Lançamento: \t" + anoLancamento + "\nAtor: \t\t\t" + nomeAtor + "\nNacionalidade: \t\t" + nacionalidade + "\nGênero: \t\t" + genero + "\nTemporada: \t\t" + temporada + "\nEpisódio: \t\t" + episodio + "\nidUsuario: \t\t" + idUsuario;
+                return "---" + "\nCaminho da Imagem: \t" + caminhoImagem + "\nTitulo: \t\t" + titulo + "\nAno de Lançamento: \t" + anoLancamento + "\nAtor: \t\t\t" + nomeAtor + "\nNacionalidade: \t\t" + nacionalidade + "\nGênero: \t\t" + genero + "\nTemporada: \t\t" + temporada + "\nEpisódio: \t\t" + episodio + "\nidUsuario: \t\t" + idUsuario;
     }
 
 }

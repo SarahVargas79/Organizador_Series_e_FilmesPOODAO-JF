@@ -29,17 +29,18 @@ public class SerieDAO {
             Connection con = Conexao.getConexao();//abrindo conexão
             //cria espaço de trabalho SQL, é a área no Java onde vamo executar os sripts SQL.
             String sql;
-            sql = "insert into series values (null, ?, ?, ?, ?, ?, ?, ?, ?)";//? paramêtros que está esperando para receber, null é o id.
+            sql = "insert into series values (null, ?, ?, ?, ?, ?, ?, ?, ?, ?)";//? paramêtros que está esperando para receber, null é o id.
             PreparedStatement pst = con.prepareStatement(sql);
             //Estes são os paramêtros
-            pst.setString(1, sVO.getTitulo());
-            pst.setInt(2, sVO.getAnoLancamento());
-            pst.setString(4, sVO.getNomeAtor());
-            pst.setString(7, sVO.getNacionalidade());
-            pst.setString(3, sVO.getGenero());
-            pst.setInt(6, sVO.getTemporada());
-            pst.setInt(5, sVO.getEpisodio());
-            pst.setInt(8, sVO.getIdUsuario().getIdUsuario());
+            pst.setString(1, sVO.getCaminhoImagem());
+            pst.setString(2, sVO.getTitulo());
+            pst.setInt(3, sVO.getAnoLancamento());
+            pst.setString(5, sVO.getNomeAtor());
+            pst.setString(8, sVO.getNacionalidade());
+            pst.setString(4, sVO.getGenero());
+            pst.setInt(7, sVO.getTemporada());
+            pst.setInt(6, sVO.getEpisodio());
+            pst.setInt(9, sVO.getIdUsuario().getIdUsuario());
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("\nErro ao cadastrar!\n" + ex.getMessage());
@@ -57,6 +58,7 @@ public class SerieDAO {
             while (rs.next()) {
                 Serie s = new Serie();//objeto cliente
                 //lado do java |x| (lado do banco)
+                s.setCaminhoImagem(rs.getString("caminhoImagem"));
                 s.setIdSerie(rs.getByte("idSerie"));
                 s.setTitulo(rs.getString("titulo"));
                 s.setAnoLancamento(rs.getInt("anoLancamento"));
@@ -85,6 +87,7 @@ public class SerieDAO {
             ResultSet rs = pst.executeQuery();//ResultSet estrutura no java, é um meio de campo entre o banco de dados e o java(aplicação).
             while (rs.next()) {
                 //lado do java |x| (lado do banco)
+                s.setCaminhoImagem(rs.getString("caminhoImagem"));
                 s.setIdSerie(rs.getByte("idSerie"));
                 s.setTitulo(rs.getString("titulo"));
                 s.setAnoLancamento(rs.getInt("anoLancamento"));
@@ -105,11 +108,12 @@ public class SerieDAO {
 
         try {
             Connection con = Conexao.getConexao();
-            String sql = "update series set temporada = ? , episodio = ? where titulo = ?";
+            String sql = "update series set caminhoImagem = ?, temporada = ?, episodio = ? where titulo = ?";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setInt(1, sVO.getTemporada());
-            pst.setInt(2, sVO.getEpisodio());
-            pst.setString(3, sVO.getTitulo());
+            pst.setString(1, sVO.getCaminhoImagem());
+            pst.setInt(2, sVO.getTemporada());
+            pst.setInt(3, sVO.getEpisodio());
+            pst.setString(4, sVO.getTitulo());
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("\nErro ao atualizar série!\n" + ex.getMessage());

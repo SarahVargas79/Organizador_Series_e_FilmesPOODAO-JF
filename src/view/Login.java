@@ -60,6 +60,7 @@ public class Login extends javax.swing.JFrame {
         jlEsqueciSenha = new javax.swing.JLabel();
         jbCriarConta = new javax.swing.JButton();
         jbEntrar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -86,12 +87,12 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Monotype Corsiva", 1, 40)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Login");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 90, 100, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 90, 100, 40));
 
         jLabel2.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("E-mail");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 140, 70, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 70, -1));
 
         jtfEmail.setBackground(new java.awt.Color(0, 0, 0));
         jtfEmail.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -99,15 +100,15 @@ public class Login extends javax.swing.JFrame {
         jtfEmail.setToolTipText("Informa e-mail cadastrado ");
         jtfEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jtfEmail.setCaretColor(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jtfEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, 231, -1));
+        jPanel1.add(jtfEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 190, 231, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, 231, 10));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, 231, 10));
 
         jLabel3.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Senha");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, 60, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 230, 60, -1));
 
         jpfSenha.setBackground(new java.awt.Color(0, 0, 0));
         jpfSenha.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -115,10 +116,10 @@ public class Login extends javax.swing.JFrame {
         jpfSenha.setToolTipText("Informe senha cadastrada");
         jpfSenha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jpfSenha.setCaretColor(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jpfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, 231, -1));
+        jPanel1.add(jpfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 231, -1));
 
         jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 231, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 280, 231, 10));
 
         jlEsqueciSenha.setFont(new java.awt.Font("Monotype Corsiva", 1, 20)); // NOI18N
         jlEsqueciSenha.setForeground(new java.awt.Color(19, 196, 19));
@@ -128,7 +129,7 @@ public class Login extends javax.swing.JFrame {
                 jlEsqueciSenhaMouseClicked(evt);
             }
         });
-        jPanel1.add(jlEsqueciSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, 140, -1));
+        jPanel1.add(jlEsqueciSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 140, -1));
 
         jbCriarConta.setBackground(new java.awt.Color(0, 0, 204));
         jbCriarConta.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
@@ -139,7 +140,7 @@ public class Login extends javax.swing.JFrame {
                 jbCriarContaActionPerformed(evt);
             }
         });
-        jPanel1.add(jbCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, -1, -1));
+        jPanel1.add(jbCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 330, -1, -1));
 
         jbEntrar.setBackground(new java.awt.Color(0, 0, 204));
         jbEntrar.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
@@ -150,7 +151,10 @@ public class Login extends javax.swing.JFrame {
                 jbEntrarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 310, -1, -1));
+        jPanel1.add(jbEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 330, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8-login96.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/capa login.jpg"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 430, 480));
@@ -264,6 +268,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

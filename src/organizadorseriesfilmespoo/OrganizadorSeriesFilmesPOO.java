@@ -284,7 +284,7 @@ public class OrganizadorSeriesFilmesPOO {
                     System.out.println("\nE-mail inválido!");
                 }
             } while (!isValidEmailAddressRegex);
-            Serie s = new Serie(idSerie, titulo, anoLancamento, nomeAtor, nacionalidade, genero, temporada, episodio, idUsuario);
+            Serie s = new Serie(idSerie, titulo, anoLancamento, nomeAtor, nacionalidade, genero, temporada, episodio, nacionalidade, idUsuario);
             serieS.cadSerie(s);
             cadSerie.addSerie(s);
             System.out.println("\nSerie cadastrado com sucesso!");
