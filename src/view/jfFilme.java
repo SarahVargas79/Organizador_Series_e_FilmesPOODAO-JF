@@ -25,6 +25,7 @@ public class jfFilme extends javax.swing.JFrame {
     public jfFilme() {
         initComponents();
         addRowToTable();
+        jbExcluir.setVisible(false);
         this.setLocationRelativeTo(null);
     }
 
@@ -67,14 +68,14 @@ public class jfFilme extends javax.swing.JFrame {
         model.fireTableDataChanged();
         Object rowData[] = new Object[7];//rowData é o vetor para popular a linha da tabela por coluna
         FilmeServicos filmeS = ServicosFactory.getFilmeServicos();
-        for (Filme s : filmeS.buscaFilmes()) {//O vetor sempre começa em 0
-            rowData[0] = s.getTitulo();
-            rowData[1] = s.getAnoLancamento();
-            rowData[2] = s.getNomeAtor();
-            rowData[3] = s.getNacionalidade();
-            rowData[4] = s.getGenero();
-            rowData[5] = s.getDuracaoEspera();
-            rowData[6] = s.getIdUsuario().getNomeUsuario();
+        for (Filme f : filmeS.buscaFilmes()) {//O vetor sempre começa em 0
+            rowData[0] = f.getTitulo();
+            rowData[1] = f.getAnoLancamento();
+            rowData[2] = f.getNomeAtor();
+            rowData[3] = f.getNacionalidade();
+            rowData[4] = f.getGenero();
+            rowData[5] = f.getDuracaoEspera();
+            rowData[6] = f.getIdUsuario().getNomeUsuario();
             model.addRow(rowData);//Add para popular.
         }
     }
@@ -125,6 +126,9 @@ public class jfFilme extends javax.swing.JFrame {
         jtfDuracaoTempo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jtfEmail = new javax.swing.JTextField();
+        jbAlterar = new javax.swing.JButton();
+        jbExcluir = new javax.swing.JButton();
+        jbLimpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerência Filme");
@@ -288,6 +292,40 @@ public class jfFilme extends javax.swing.JFrame {
             }
         });
 
+        jbAlterar.setBackground(new java.awt.Color(0, 0, 255));
+        jbAlterar.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
+        jbAlterar.setForeground(new java.awt.Color(255, 255, 255));
+        jbAlterar.setText("Alterar");
+        jbAlterar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jbAlterar.setEnabled(false);
+        jbAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAlterarActionPerformed(evt);
+            }
+        });
+
+        jbExcluir.setBackground(new java.awt.Color(0, 0, 255));
+        jbExcluir.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
+        jbExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        jbExcluir.setText("Excluir");
+        jbExcluir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbExcluirActionPerformed(evt);
+            }
+        });
+
+        jbLimpar.setBackground(new java.awt.Color(0, 0, 255));
+        jbLimpar.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
+        jbLimpar.setForeground(new java.awt.Color(255, 255, 255));
+        jbLimpar.setText("Limpar");
+        jbLimpar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jbLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimparActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -321,7 +359,15 @@ public class jfFilme extends javax.swing.JFrame {
                             .addComponent(jtfNacionalidade)
                             .addComponent(jtfGenero)
                             .addComponent(jtfAnoLancamento)
-                            .addComponent(jtfEmail))))
+                            .addComponent(jtfEmail)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(162, 162, 162)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -356,7 +402,12 @@ public class jfFilme extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbLimpar)
+                    .addComponent(jbAlterar)
+                    .addComponent(jbExcluir))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -377,6 +428,8 @@ public class jfFilme extends javax.swing.JFrame {
 
     private void jtFilmesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtFilmesMouseClicked
         // TODO add your handling code here:
+        jbAlterar.setEnabled(true);
+        jbExcluir.setVisible(true);
     }//GEN-LAST:event_jtFilmesMouseClicked
 
     private void jtfAnoLancamentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAnoLancamentoKeyTyped
@@ -419,6 +472,83 @@ public class jfFilme extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jtfEmailFocusLost
+
+    private void jbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAlterarActionPerformed
+        // TODO add your handling code here:
+        jbSalvar.setText("Confirmar");
+        jtfTitulo.setEnabled(false);
+        jtfAnoLancamento.setEnabled(false);
+        jtfAtores.setEnabled(false);
+        jtfNacionalidade.setEnabled(false);
+        jtfGenero.setEnabled(false);
+        jtfEmail.setEnabled(false);
+        jbLimpar.setText("Cancelar");
+        jbExcluir.setVisible(false);
+
+        //Pegando dados da tabela e add em variaveis locais.
+        int linha;
+        linha = jtFilmes.getSelectedRow();
+        String titulo = (String) jtFilmes.getValueAt(linha, 0);
+        FilmeServicos filmeS = ServicosFactory.getFilmeServicos();
+        Filme f = filmeS.buscaFilmeTitulo(titulo);
+        //Carregar dados da tabela no form
+        jtfCaminho.setText(f.getCaminhoImagem());
+        jtfTitulo.setText(f.getTitulo());
+        jtfAnoLancamento.setText(String.valueOf(f.getAnoLancamento()));
+        jtfAtores.setText(f.getNomeAtor());
+        jtfNacionalidade.setText(f.getNacionalidade());
+        jtfGenero.setText(f.getGenero());
+        jtfDuracaoTempo.setText(String.valueOf(f.getDuracaoEspera()));
+        jtfEmail.setText(f.getIdUsuario().getEmail());
+        jtfTitulo.requestFocus();
+    }//GEN-LAST:event_jbAlterarActionPerformed
+
+    private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
+        // TODO add your handling code here:
+        if (jbLimpar.getText().equals("Limpar")) {
+            limparCampos();
+        } else {
+            limparCampos();
+            jbLimpar.setText("Limpar");
+            jbSalvar.setText("Salvar");
+            jbAlterar.setEnabled(false);
+            jtfTitulo.setEnabled(true);
+            jbExcluir.setVisible(false);
+        }
+    }
+
+    public void limparCampos() {
+        jlImagem.setIcon(null);
+        jtfCaminho.setText("");
+        jtfTitulo.setText("");
+        jtfAnoLancamento.setText("");
+        jtfAtores.setText("");
+        jtfNacionalidade.setText("");
+        jtfGenero.setText("");
+        jtfTemporada.setText("");
+        jtfEpisodio.setText("");
+        jtfEmail.setText("");
+        jtfTitulo.requestFocus();
+    }//GEN-LAST:event_jbLimparActionPerformed
+
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
+        // TODO add your handling code here:
+        int linha;
+        String titulo;
+        linha = jtFilmes.getSelectedRow();
+        titulo = (String) jtFilmes.getValueAt(linha, 0);
+        FilmeServicos filmeS = ServicosFactory.getFilmeServicos();
+        Object[] resp = {"Sim", "Não"};
+        int resposta = JOptionPane.showOptionDialog(this, "Deseja realmente deletar este título? ", "Deletar", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, resp, resp[0]);
+        if (resposta == 0) {
+            filmeS.removerFilme(titulo);
+            addRowToTable();
+            JOptionPane.showMessageDialog(this, "Série deletada com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Ok, operação cancelada!");
+        }
+        jbExcluir.setVisible(false);
+    }//GEN-LAST:event_jbExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -467,6 +597,9 @@ public class jfFilme extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbAlterar;
+    private javax.swing.JButton jbExcluir;
+    private javax.swing.JButton jbLimpar;
     private javax.swing.JTable jtFilmes;
     private javax.swing.JTextField jtfAnoLancamento;
     private javax.swing.JTextField jtfAtores;
