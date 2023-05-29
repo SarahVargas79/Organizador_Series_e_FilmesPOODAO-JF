@@ -29,16 +29,17 @@ public class FilmeDAO {
             Connection con = Conexao.getConexao();//abrindo conexão
             //cria espaço de trabalho SQL, é a área no Java onde vamo executar os sripts SQL.
             String sql;
-            sql = "insert into filmes values (null, ?, ?, ?, ?, ?, ?, ?)";//? paramêtros que está esperando para receber, null é o id.
+            sql = "insert into filmes values (null, ?, ?, ?, ?, ?, ?, ?, ?)";//? paramêtros que está esperando para receber, null é o id.
             PreparedStatement pst = con.prepareStatement(sql);
             //Estes são os paramêtros
-            pst.setString(2, filmVO.getTitulo());
-            pst.setInt(3, filmVO.getAnoLancamento());
-            pst.setString(4, filmVO.getNomeAtor());
-            pst.setString(6, filmVO.getNacionalidade());
-            pst.setString(1, filmVO.getGenero());
-            pst.setFloat(5, filmVO.getDuracaoEspera());
-            pst.setInt(7, filmVO.getIdUsuario().getIdUsuario());
+            pst.setString(1, filmVO.getCaminhoImagem());
+            pst.setString(3, filmVO.getTitulo());
+            pst.setInt(4, filmVO.getAnoLancamento());
+            pst.setString(5, filmVO.getNomeAtor());
+            pst.setString(7, filmVO.getNacionalidade());
+            pst.setString(2, filmVO.getGenero());
+            pst.setFloat(6, filmVO.getDuracaoEspera());
+            pst.setInt(8, filmVO.getIdUsuario().getIdUsuario());
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("\nErro ao cadastrar!\n" + ex.getMessage());
@@ -57,6 +58,7 @@ public class FilmeDAO {
                 Filme film = new Filme();//objeto cliente
                 //lado do java |x| (lado do banco)
                 film.setIdFilme(rs.getByte("idFilme"));
+                film.setCaminhoImagem(rs.getString("caminhoImagem"));
                 film.setTitulo(rs.getString("titulo"));
                 film.setAnoLancamento(rs.getInt("anoLancamento"));
                 film.setGenero(rs.getString("genero"));
@@ -84,6 +86,7 @@ public class FilmeDAO {
             while (rs.next()) {
                 //lado do java |x| (lado do banco)
                 film.setIdFilme(rs.getByte("idFilme"));
+                film.setCaminhoImagem(rs.getString("caminhoImagem"));
                 film.setTitulo(rs.getString("titulo"));
                 film.setAnoLancamento(rs.getInt("anoLancamento"));
                 film.setGenero(rs.getString("genero"));
@@ -102,10 +105,11 @@ public class FilmeDAO {
 
         try {
             Connection con = Conexao.getConexao();
-            String sql = "update filmes set duracaoEspera = ? where titulo = ?";
+            String sql = "update filmes set caminhoImagem = ?, duracaoEspera = ? where titulo = ?";
             PreparedStatement pst = con.prepareStatement(sql);
-            pst.setFloat(1, filmVO.getDuracaoEspera());
-            pst.setString(2, filmVO.getTitulo());
+            pst.setString(1, filmVO.getCaminhoImagem());
+            pst.setFloat(2, filmVO.getDuracaoEspera());
+            pst.setString(3, filmVO.getTitulo());
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("\nErro ao atualizar filme!\n" + ex.getMessage());

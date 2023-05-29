@@ -58,8 +58,8 @@ public class SerieDAO {
             while (rs.next()) {
                 Serie s = new Serie();//objeto cliente
                 //lado do java |x| (lado do banco)
-                s.setCaminhoImagem(rs.getString("caminhoImagem"));
                 s.setIdSerie(rs.getByte("idSerie"));
+                s.setCaminhoImagem(rs.getString("caminhoImagem"));
                 s.setTitulo(rs.getString("titulo"));
                 s.setAnoLancamento(rs.getInt("anoLancamento"));
                 s.setGenero(rs.getString("genero"));
@@ -87,8 +87,8 @@ public class SerieDAO {
             ResultSet rs = pst.executeQuery();//ResultSet estrutura no java, é um meio de campo entre o banco de dados e o java(aplicação).
             while (rs.next()) {
                 //lado do java |x| (lado do banco)
-                s.setCaminhoImagem(rs.getString("caminhoImagem"));
                 s.setIdSerie(rs.getByte("idSerie"));
+                s.setCaminhoImagem(rs.getString("caminhoImagem"));
                 s.setTitulo(rs.getString("titulo"));
                 s.setAnoLancamento(rs.getInt("anoLancamento"));
                 s.setGenero(rs.getString("genero"));

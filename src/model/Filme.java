@@ -20,12 +20,13 @@ public class Filme {
     private String nacionalidade;
     private String genero;
     private float duracaoEspera;
+    private String caminhoImagem;
     private Usuario idUsuario;
 
     public Filme() {
     }
 
-    public Filme(int idFilme, String titulo, int anoLancamento, String nomeAtor, String nacionalidade, String genero, float duracaoEspera, Usuario idUsuario) {
+    public Filme(int idFilme, String titulo, int anoLancamento, String nomeAtor, String nacionalidade, String genero, float duracaoEspera, String caminhoImagem, Usuario idUsuario) {
         this.idFilme = idFilme;
         this.titulo = titulo;
         this.anoLancamento = anoLancamento;
@@ -33,6 +34,7 @@ public class Filme {
         this.nacionalidade = nacionalidade;
         this.genero = genero;
         this.duracaoEspera = duracaoEspera;
+        this.caminhoImagem = caminhoImagem;
         this.idUsuario = idUsuario;
     }
 
@@ -92,6 +94,14 @@ public class Filme {
         this.duracaoEspera = duracaoEspera;
     }
 
+    public String getCaminhoImagem() {
+        return caminhoImagem;
+    }
+
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
+    }
+
     public Usuario getIdUsuario() {
         return idUsuario;
     }
@@ -102,7 +112,7 @@ public class Filme {
 
     @Override
     public String toString() {
-        return "---" + "\nTitulo: \t\t" + titulo + "\nAno de Lançamento: \t" + anoLancamento + "\nAtor: \t\t\t" + nomeAtor + "\nNacionalidade: \t\t" + nacionalidade + "\nGênero: \t\t" + genero + "\nTempo de duração: \t" + duracaoEspera + "\nidUsuario: \t\t" + idUsuario;
+                return "---" + "\nTitulo: \t\t" + titulo + "\nAno de Lançamento: \t" + anoLancamento + "\nAtor: \t\t\t" + nomeAtor + "\nNacionalidade: \t\t" + nacionalidade + "\nGênero: \t\t" + genero + "\nTempo de duração: \t" + duracaoEspera + "\nCaminho da imagem: \t" + caminhoImagem + "\nidUsuario: \t\t" + idUsuario;                                                                                                               
     }
 
 }

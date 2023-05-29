@@ -35,8 +35,8 @@ public class CSerie {
 
     public void mockSeries() {
         Serie s1 = new Serie();
-        s1.setCaminhoImagem("");
         s1.setIdSerie(this.geraID());
+        s1.setCaminhoImagem("");
         s1.setTitulo("Ginny & Georgia");
         s1.setAnoLancamento(2021);
         s1.setNomeAtor("Georgia Miller, Ginny Miller, Marcus Baker, Abby Littman, Maxine Baker, Joe, Paul, Autsin");

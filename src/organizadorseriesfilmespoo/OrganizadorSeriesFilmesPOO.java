@@ -413,7 +413,7 @@ public class OrganizadorSeriesFilmesPOO {
                     System.out.println("\nE-mail inválido!");
                 }
             } while (!isValidEmailAddressRegex);
-            Filme film = new Filme(idFilme, titulo, anoLancamento, nomeAtor, nacionalidade, genero, duracaoEspera, idUsuario);
+            Filme film = new Filme(idFilme, titulo, anoLancamento, nomeAtor, nacionalidade, genero, duracaoEspera, nacionalidade, idUsuario);
             filmeS.cadFilme(film);
             cadFilme.addFilme(film);
             System.out.println("\nFilme cadastrado com sucesso!");

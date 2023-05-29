@@ -37,6 +37,7 @@ public class CFilme {
 
         Filme f1 = new Filme();
         f1.setIdFilme(this.geraID());
+        f1.setCaminhoImagem("");
         f1.setTitulo("Jogos Vorazes");
         f1.setAnoLancamento(2012);
         f1.setNomeAtor("Katniss Everdeen, Peeta Mellark, Gale Hawthorne, Effie Trinket, Haymitch Abernathy, Caesar Flickerman, Presidente Snow, Primrose Everdeen");

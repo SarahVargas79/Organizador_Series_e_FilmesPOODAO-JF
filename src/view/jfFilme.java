@@ -5,6 +5,10 @@
  */
 package view;
 
+import java.awt.Image;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Filme;
@@ -66,16 +70,17 @@ public class jfFilme extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jtFilmes.getModel();
         model.getDataVector().removeAllElements();//Remove todas as linhas.
         model.fireTableDataChanged();
-        Object rowData[] = new Object[7];//rowData é o vetor para popular a linha da tabela por coluna
+        Object rowData[] = new Object[8];//rowData é o vetor para popular a linha da tabela por coluna
         FilmeServicos filmeS = ServicosFactory.getFilmeServicos();
-        for (Filme f : filmeS.buscaFilmes()) {//O vetor sempre começa em 0
-            rowData[0] = f.getTitulo();
-            rowData[1] = f.getAnoLancamento();
-            rowData[2] = f.getNomeAtor();
-            rowData[3] = f.getNacionalidade();
-            rowData[4] = f.getGenero();
-            rowData[5] = f.getDuracaoEspera();
-            rowData[6] = f.getIdUsuario().getNomeUsuario();
+        for (Filme f : filmeS.buscaFilmes()) {//O vetor sempre começa em 0           
+            rowData[0] = f.getCaminhoImagem();
+            rowData[1] = f.getTitulo();
+            rowData[2] = f.getAnoLancamento();
+            rowData[3] = f.getNomeAtor();
+            rowData[4] = f.getNacionalidade();
+            rowData[5] = f.getGenero();
+            rowData[6] = f.getDuracaoEspera();
+            rowData[7] = f.getIdUsuario().getNomeUsuario();
             model.addRow(rowData);//Add para popular.
         }
     }
@@ -96,6 +101,16 @@ public class jfFilme extends javax.swing.JFrame {
         if (nletras.contains(evt.getKeyChar() + "")) {
             evt.consume();
         }
+    }
+    
+    /**
+     * Método vincula os dados nos campos do formulário na tela.
+     */
+    public void vincularCampos() {
+        FilmeServicos filmeS = ServicosFactory.getFilmeServicos();
+        Filme s = filmeS.buscaFilmes().get(jtFilmes.getSelectedRow());//Vai acessar dentro da lista de séries. "getSelectedRow" pega a linha selecionada na tabela e procura o objeto(tipo: filme) correpondente a essa linha dentro da lista e joga dentro dessa váriavel. A linha selecionada vai correposnder a um índice da lista, vai buscar dentro da lista qual objeto correspondente a esse índice.
+        ImageIcon imagem = new ImageIcon(s.getCaminhoImagem());
+        jlImagem.setIcon(new ImageIcon(imagem.getImage().getScaledInstance(jlImagem.getWidth(), jlImagem.getHeight(), Image.SCALE_DEFAULT)));//Setar na jLabel. Pega o objeto imagem que foi declarado
     }
 
     /**
@@ -129,6 +144,11 @@ public class jfFilme extends javax.swing.JFrame {
         jbAlterar = new javax.swing.JButton();
         jbExcluir = new javax.swing.JButton();
         jbLimpar = new javax.swing.JButton();
+        jbSalvar = new javax.swing.JButton();
+        jbFechar = new javax.swing.JButton();
+        jlImagem = new javax.swing.JLabel();
+        jbADDImagem = new javax.swing.JButton();
+        jtfCaminho = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerência Filme");
@@ -164,14 +184,14 @@ public class jfFilme extends javax.swing.JFrame {
         jtFilmes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtFilmes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Título", "Ano de Lançamento", "Atores", "Nacionalidade", "Gênero", "Duração de Tempo", "Usuário"
+                "Caminho da Imagem", "Título", "Ano de Lançamento", "Atores", "Nacionalidade", "Gênero", "Duração de Tempo", "Usuário"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -326,87 +346,146 @@ public class jfFilme extends javax.swing.JFrame {
             }
         });
 
+        jbSalvar.setBackground(new java.awt.Color(0, 0, 255));
+        jbSalvar.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
+        jbSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        jbSalvar.setText("Salvar");
+        jbSalvar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalvarActionPerformed(evt);
+            }
+        });
+
+        jbFechar.setBackground(new java.awt.Color(232, 0, 0));
+        jbFechar.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
+        jbFechar.setForeground(new java.awt.Color(255, 255, 255));
+        jbFechar.setText("Fechar");
+        jbFechar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jbFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbFecharActionPerformed(evt);
+            }
+        });
+
+        jlImagem.setBackground(new java.awt.Color(0, 0, 0));
+        jlImagem.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jbADDImagem.setBackground(new java.awt.Color(71, 82, 82));
+        jbADDImagem.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
+        jbADDImagem.setForeground(new java.awt.Color(255, 255, 255));
+        jbADDImagem.setText("Add imagem");
+        jbADDImagem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jbADDImagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbADDImagemActionPerformed(evt);
+            }
+        });
+
+        jtfCaminho.setBackground(new java.awt.Color(104, 127, 127));
+        jtfCaminho.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtfCaminho.setForeground(new java.awt.Color(0, 0, 0));
+        jtfCaminho.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jtfCaminho.setCaretColor(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1037, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1037, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(jtfTitulo))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jbADDImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtfCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfDuracaoTempo)
-                            .addComponent(jtfAtores)
-                            .addComponent(jtfNacionalidade)
-                            .addComponent(jtfGenero)
-                            .addComponent(jtfAnoLancamento)
-                            .addComponent(jtfEmail)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(162, 162, 162)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jbLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtfGenero, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                                    .addComponent(jtfNacionalidade, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jtfAtores, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jtfTitulo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jtfAnoLancamento, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jtfEmail)
+                                    .addComponent(jtfDuracaoTempo, javax.swing.GroupLayout.Alignment.TRAILING))))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jtfAnoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jtfAtores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jtfNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jtfGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfDuracaoTempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbLimpar)
-                    .addComponent(jbAlterar)
-                    .addComponent(jbExcluir))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jtfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jtfAnoLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jtfAtores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jtfNacionalidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jtfGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jtfDuracaoTempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbLimpar)
+                            .addComponent(jbAlterar)
+                            .addComponent(jbSalvar)
+                            .addComponent(jbExcluir)
+                            .addComponent(jbFechar)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbADDImagem)
+                            .addComponent(jtfCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -430,6 +509,7 @@ public class jfFilme extends javax.swing.JFrame {
         // TODO add your handling code here:
         jbAlterar.setEnabled(true);
         jbExcluir.setVisible(true);
+        vincularCampos();
     }//GEN-LAST:event_jtFilmesMouseClicked
 
     private void jtfAnoLancamentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAnoLancamentoKeyTyped
@@ -488,7 +568,7 @@ public class jfFilme extends javax.swing.JFrame {
         //Pegando dados da tabela e add em variaveis locais.
         int linha;
         linha = jtFilmes.getSelectedRow();
-        String titulo = (String) jtFilmes.getValueAt(linha, 0);
+        String titulo = (String) jtFilmes.getValueAt(linha, 1);
         FilmeServicos filmeS = ServicosFactory.getFilmeServicos();
         Filme f = filmeS.buscaFilmeTitulo(titulo);
         //Carregar dados da tabela no form
@@ -525,8 +605,7 @@ public class jfFilme extends javax.swing.JFrame {
         jtfAtores.setText("");
         jtfNacionalidade.setText("");
         jtfGenero.setText("");
-        jtfTemporada.setText("");
-        jtfEpisodio.setText("");
+        jtfDuracaoTempo.setText("");
         jtfEmail.setText("");
         jtfTitulo.requestFocus();
     }//GEN-LAST:event_jbLimparActionPerformed
@@ -536,19 +615,73 @@ public class jfFilme extends javax.swing.JFrame {
         int linha;
         String titulo;
         linha = jtFilmes.getSelectedRow();
-        titulo = (String) jtFilmes.getValueAt(linha, 0);
+        titulo = (String) jtFilmes.getValueAt(linha, 1);
         FilmeServicos filmeS = ServicosFactory.getFilmeServicos();
         Object[] resp = {"Sim", "Não"};
         int resposta = JOptionPane.showOptionDialog(this, "Deseja realmente deletar este título? ", "Deletar", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, resp, resp[0]);
         if (resposta == 0) {
             filmeS.removerFilme(titulo);
             addRowToTable();
-            JOptionPane.showMessageDialog(this, "Série deletada com sucesso!");
+            JOptionPane.showMessageDialog(this, "Filme deletado com sucesso!");
         } else {
             JOptionPane.showMessageDialog(this, "Ok, operação cancelada!");
         }
         jbExcluir.setVisible(false);
     }//GEN-LAST:event_jbExcluirActionPerformed
+
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+        if (validaInputs()) {
+            //Pegar dados da tela para salvar
+            int idFilme = 0;
+            String caminhoImagem = jtfCaminho.getText();
+            String titulo = jtfTitulo.getText().toUpperCase();
+            int anoLancamento = Integer.parseInt(jtfAnoLancamento.getText());
+            String nomeAtor = jtfAtores.getText().toUpperCase();
+            String nacionalidade = jtfNacionalidade.getText().toUpperCase();
+            String genero = jtfGenero.getText().toUpperCase();
+            float duracaoTempo = Float.parseFloat(jtfDuracaoTempo.getText());
+            UsuarioServicos usuS = ServicosFactory.getUsuarioServicos();
+            Usuario usu = usuS.buscarUsuariobyEmail(jtfEmail.getText());
+            FilmeServicos filmeS = ServicosFactory.getFilmeServicos();
+
+            Filme f = new Filme(idFilme, titulo, anoLancamento, nomeAtor, nacionalidade, genero, duracaoTempo, caminhoImagem, usu);
+            if (jbSalvar.getText().equals("Salvar")) {
+                filmeS.cadFilme(f);
+            } else {
+                filmeS.atualizarFilme(f);
+                jbLimpar.doClick();
+            }
+            limparCampos();
+            addRowToTable();
+        }
+    }//GEN-LAST:event_jbSalvarActionPerformed
+
+    private void jbFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFecharActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jbFecharActionPerformed
+
+    private void jbADDImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbADDImagemActionPerformed
+        // TODO add your handling code here:
+        JFileChooser arquivo = new JFileChooser();//Objeto
+        arquivo.setDialogTitle("Selecione e carregue uma imagem");//Título da janela que vai ser aberto
+        arquivo.setFileSelectionMode(JFileChooser.FILES_ONLY);//Esse componente vai receber uma propriedade para deixar só selecionar um arquivo somente por vez.
+        int op = arquivo.showOpenDialog(this);//Variável tipo inteira que ela vai fazer uma verificação que está pedindo para abrir a janela ali mesmo para que se possa escolher uma imagem
+        //Verificação se ouve seleção opção 1
+        if (op == JFileChooser.APPROVE_OPTION) {
+            File file = new File("");//Declaração de objeto
+            //Vai receber a variável
+            file = arquivo.getSelectedFile();//Traz o arquivo selecionado
+            //Armazenar o caminho
+            String fileName = file.getAbsolutePath(); //Pegar o caminho absoluto de onde está a imagem
+            //Setar "jtfCaminho" caminho absoluto
+            jtfCaminho.setText(fileName);
+            //Adionar a imagem na jLabel
+            ImageIcon imagem = new ImageIcon(file.getPath());//Vai pegar o caminho do arquivo onde ele está
+            jlImagem.setIcon(new ImageIcon(imagem.getImage().getScaledInstance(jlImagem.getWidth(), jlImagem.getHeight(), Image.SCALE_DEFAULT)));//Seta a imagem. Variável(ImageIcon) o conteúdo("imagem"(imagem que está no caminho)). Vai se ajustar aquela jLabel(Image.SCALE_DEFAULT).
+
+        }
+    }//GEN-LAST:event_jbADDImagemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -597,12 +730,17 @@ public class jfFilme extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbADDImagem;
     private javax.swing.JButton jbAlterar;
     private javax.swing.JButton jbExcluir;
+    private javax.swing.JButton jbFechar;
     private javax.swing.JButton jbLimpar;
+    private javax.swing.JButton jbSalvar;
+    private javax.swing.JLabel jlImagem;
     private javax.swing.JTable jtFilmes;
     private javax.swing.JTextField jtfAnoLancamento;
     private javax.swing.JTextField jtfAtores;
+    private javax.swing.JTextField jtfCaminho;
     private javax.swing.JTextField jtfDuracaoTempo;
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfGenero;
