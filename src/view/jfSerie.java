@@ -34,31 +34,36 @@ public class jfSerie extends javax.swing.JFrame {
     }
 
     public boolean validaInputs() {
-        if (jtfCaminho.getText().equals("Preencher caminho")) {
-            jtfCaminho.requestFocus();
-            return false;
-        } else if (jtfTitulo.getText().equals("Preencher título")) {
+        if (jtfTitulo.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher título!");
             jtfTitulo.requestFocus();
             return false;
-        } else if (jtfAnoLancamento.getText().equals("Preencher ano de lançamento")) {
+        } else if (jtfAnoLancamento.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher ano de lançamento!");
             jtfAnoLancamento.requestFocus();
             return false;
-        } else if (jtfAtores.getText().equals("Preencher atores")) {
+        } else if (jtfAtores.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher atores!");
             jtfAtores.requestFocus();
             return false;
-        } else if (jtfNacionalidade.getText().equals("Preencher nacionalidade")) {
+        } else if (jtfNacionalidade.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher nacionalidade!");
             jtfNacionalidade.requestFocus();
             return false;
-        } else if (jtfGenero.getText().equals("Preencher gênero")) {
+        } else if (jtfGenero.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher gênero!");
             jtfGenero.requestFocus();
             return false;
-        } else if (jtfTemporada.getText().equals("Preencher temporada")) {
+        } else if (jtfTemporada.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher temporada!");
             jtfTemporada.requestFocus();
             return false;
-        } else if (jtfEpisodio.getText().equals("Preencher episódio")) {
+        } else if (jtfEpisodio.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher episódio!");
             jtfEpisodio.requestFocus();
             return false;
-        } else if (jtfEmail.getText().equals("Preencher e-mail")) {
+        } else if (jtfEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher e-mail!");
             jtfEmail.requestFocus();
             return false;
         }
@@ -106,7 +111,12 @@ public class jfSerie extends javax.swing.JFrame {
     /**
      * Método vincula os dados nos campos do formulário na tela.
      */
-    
+    public void vincularCampos() {
+        SerieServicos serieS = ServicosFactory.getSerieServicos();
+        Serie s = serieS.buscaSeries().get(jtSeries.getSelectedRow());//Vai acessar dentro da lista de séries. "getSelectedRow" pega a linha selecionada na tabela e procura o objeto(tipo: serie) correpondente a essa linha dentro da lista e joga dentro dessa váriavel. A linha selecionada vai correposnder a um índice da lista, vai buscar dentro da lista qual objeto correspondente a esse índice.
+        ImageIcon imagem = new ImageIcon(s.getCaminhoImagem());
+        jlImagem.setIcon(new ImageIcon(imagem.getImage().getScaledInstance(jlImagem.getWidth(), jlImagem.getHeight(), Image.SCALE_DEFAULT)));//Setar na jLabel. Pega o objeto imagem que foi declarado
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -497,7 +507,7 @@ public class jfSerie extends javax.swing.JFrame {
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbFechar)
@@ -591,6 +601,7 @@ public class jfSerie extends javax.swing.JFrame {
     }
 
     public void limparCampos() {
+        jlImagem.setIcon(null);
         jtfCaminho.setText("");
         jtfTitulo.setText("");
         jtfAnoLancamento.setText("");
@@ -640,6 +651,7 @@ public class jfSerie extends javax.swing.JFrame {
         // TODO add your handling code here:
         jbAlterar.setEnabled(true);
         jbExcluir.setVisible(true);
+        vincularCampos();
     }//GEN-LAST:event_jtSeriesMouseClicked
 
     private void jtfTemporadaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTemporadaKeyTyped

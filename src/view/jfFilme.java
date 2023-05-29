@@ -7,9 +7,9 @@ package view;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Serie;
+import model.Filme;
 import model.Usuario;
-import services.SerieServicos;
+import services.FilmeServicos;
 import services.ServicosFactory;
 import services.UsuarioServicos;
 
@@ -27,27 +27,34 @@ public class jfFilme extends javax.swing.JFrame {
         addRowToTable();
         this.setLocationRelativeTo(null);
     }
-    
+
     public boolean validaInputs() {
-        if (jtfTitulo.getText().equals("Preencher título")) {
+        if (jtfTitulo.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher título!");
             jtfTitulo.requestFocus();
             return false;
-        } else if (jtfAnoLancamento.getText().equals("Preencher ano de lançamento")) {
+        } else if (jtfAnoLancamento.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher ano de lançamento!");
             jtfAnoLancamento.requestFocus();
             return false;
-        } else if (jtfAtores.getText().equals("Preencher atores")) {
+        } else if (jtfAtores.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher atores!");
             jtfAtores.requestFocus();
             return false;
-        } else if (jtfNacionalidade.getText().equals("Preencher nacionalidade")) {
+        } else if (jtfNacionalidade.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher nacionalidade!");
             jtfNacionalidade.requestFocus();
             return false;
-        } else if (jtfGenero.getText().equals("Preencher gênero")) {
+        } else if (jtfGenero.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher gênero!");
             jtfGenero.requestFocus();
             return false;
-        } else if (jtfDuracaoTempo.getText().equals("Preencher duração do tempo")) {
+        } else if (jtfDuracaoTempo.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher duração do tempo!");
             jtfDuracaoTempo.requestFocus();
             return false;
-        } else if (jtfEmail.getText().equals("Preencher e-mail")) {
+        } else if (jtfEmail.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Preencher e-mail!");
             jtfEmail.requestFocus();
             return false;
         }
@@ -55,20 +62,19 @@ public class jfFilme extends javax.swing.JFrame {
     }//fim validaInputs
 
     private void addRowToTable() {
-        DefaultTableModel model = (DefaultTableModel) jtSeries.getModel();
+        DefaultTableModel model = (DefaultTableModel) jtFilmes.getModel();
         model.getDataVector().removeAllElements();//Remove todas as linhas.
         model.fireTableDataChanged();
-        Object rowData[] = new Object[8];//rowData é o vetor para popular a linha da tabela por coluna
-        SerieServicos serieS = ServicosFactory.getSerieServicos();
-        for (Serie s : serieS.buscaSeries()) {//O vetor sempre começa em 0
+        Object rowData[] = new Object[7];//rowData é o vetor para popular a linha da tabela por coluna
+        FilmeServicos filmeS = ServicosFactory.getFilmeServicos();
+        for (Filme s : filmeS.buscaFilmes()) {//O vetor sempre começa em 0
             rowData[0] = s.getTitulo();
             rowData[1] = s.getAnoLancamento();
             rowData[2] = s.getNomeAtor();
             rowData[3] = s.getNacionalidade();
             rowData[4] = s.getGenero();
-            rowData[5] = s.getTemporada();
-            rowData[6] = s.getEpisodio();
-            rowData[7] = s.getIdUsuario().getNomeUsuario();
+            rowData[5] = s.getDuracaoEspera();
+            rowData[6] = s.getIdUsuario().getNomeUsuario();
             model.addRow(rowData);//Add para popular.
         }
     }
@@ -104,7 +110,7 @@ public class jfFilme extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtSeries = new javax.swing.JTable();
+        jtFilmes = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -150,9 +156,9 @@ public class jfFilme extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jtSeries.setBackground(new java.awt.Color(255, 255, 255));
-        jtSeries.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jtSeries.setModel(new javax.swing.table.DefaultTableModel(
+        jtFilmes.setBackground(new java.awt.Color(255, 255, 255));
+        jtFilmes.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jtFilmes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null}
             },
@@ -168,12 +174,12 @@ public class jfFilme extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jtSeries.addMouseListener(new java.awt.event.MouseAdapter() {
+        jtFilmes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jtSeriesMouseClicked(evt);
+                jtFilmesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jtSeries);
+        jScrollPane1.setViewportView(jtFilmes);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -369,9 +375,9 @@ public class jfFilme extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtSeriesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtSeriesMouseClicked
+    private void jtFilmesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtFilmesMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtSeriesMouseClicked
+    }//GEN-LAST:event_jtFilmesMouseClicked
 
     private void jtfAnoLancamentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAnoLancamentoKeyTyped
         // TODO add your handling code here:
@@ -461,7 +467,7 @@ public class jfFilme extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtSeries;
+    private javax.swing.JTable jtFilmes;
     private javax.swing.JTextField jtfAnoLancamento;
     private javax.swing.JTextField jtfAtores;
     private javax.swing.JTextField jtfDuracaoTempo;
