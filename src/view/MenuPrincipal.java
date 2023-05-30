@@ -89,6 +89,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmiSerie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/serie.png"))); // NOI18N
         jmiSerie.setMnemonic('S');
         jmiSerie.setText("Série");
+        jmiSerie.setToolTipText("Cadastrar, Editar, Atualizar e Remover.");
         jmiSerie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiSerieActionPerformed(evt);
@@ -96,10 +97,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jmiSerie);
 
+        jmiFilme.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmiFilme.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         jmiFilme.setForeground(new java.awt.Color(0, 0, 0));
         jmiFilme.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/film.png"))); // NOI18N
+        jmiFilme.setMnemonic('F');
         jmiFilme.setText("Filme");
+        jmiFilme.setToolTipText("Cadastrar, Editar, Atualizar e Remover.");
+        jmiFilme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiFilmeActionPerformed(evt);
+            }
+        });
         jMenu1.add(jmiFilme);
 
         jMenuBar1.add(jMenu1);
@@ -127,6 +136,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmiSair.setForeground(new java.awt.Color(0, 0, 0));
         jmiSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sair.png"))); // NOI18N
         jmiSair.setText("Sair");
+        jmiSair.setToolTipText("Fecha a janela");
         jmiSair.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -172,16 +182,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         janelaSerie.setVisible(true);
     }//GEN-LAST:event_jmiSerieActionPerformed
 
+    private void jmiFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFilmeActionPerformed
+        // TODO add your handling code here:
+        jfFilme janelaFilme = new jfFilme();
+        janelaFilme.setVisible(true);
+    }//GEN-LAST:event_jmiFilmeActionPerformed
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         close();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    public void close(){
+    public void close() {
         WindowEvent closeEvent = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeEvent);
     }
-    
+
     /**
      * @param args the command line arguments
      */

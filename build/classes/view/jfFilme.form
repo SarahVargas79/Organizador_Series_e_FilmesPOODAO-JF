@@ -89,10 +89,10 @@
                                       <Component id="jtfGenero" alignment="1" pref="503" max="32767" attributes="0"/>
                                       <Component id="jtfNacionalidade" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jtfAtores" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="jtfTitulo" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="jtfAnoLancamento" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jtfEmail" max="32767" attributes="0"/>
                                       <Component id="jtfDuracaoTempo" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jtfAnoLancamento" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jtfTitulo" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>

@@ -59,12 +59,12 @@ public class FilmeDAO {
                 //lado do java |x| (lado do banco)
                 film.setIdFilme(rs.getByte("idFilme"));
                 film.setCaminhoImagem(rs.getString("caminhoImagem"));
+                film.setGenero(rs.getString("genero"));
                 film.setTitulo(rs.getString("titulo"));
                 film.setAnoLancamento(rs.getInt("anoLancamento"));
-                film.setGenero(rs.getString("genero"));
                 film.setNomeAtor(rs.getString("nomeAtor"));
-                film.setNacionalidade(rs.getString("nacionalidade"));
                 film.setDuracaoEspera(rs.getInt("duracaoEspera"));
+                film.setNacionalidade(rs.getString("nacionalidade"));
                 film.setIdUsuario(usuarioS.buscarUsuariobyEmail(rs.getString("email")));
                 filmes.add(film);
             }
@@ -87,12 +87,12 @@ public class FilmeDAO {
                 //lado do java |x| (lado do banco)
                 film.setIdFilme(rs.getByte("idFilme"));
                 film.setCaminhoImagem(rs.getString("caminhoImagem"));
+                film.setGenero(rs.getString("genero"));
                 film.setTitulo(rs.getString("titulo"));
                 film.setAnoLancamento(rs.getInt("anoLancamento"));
-                film.setGenero(rs.getString("genero"));
                 film.setNomeAtor(rs.getString("nomeAtor"));
-                film.setNacionalidade(rs.getString("nacionalidade"));
                 film.setDuracaoEspera(rs.getInt("duracaoEspera"));
+                film.setNacionalidade(rs.getString("nacionalidade"));
                 film.setIdUsuario(usuarioS.buscarUsuariobyEmail(rs.getString("email")));
             }
         } catch (SQLException ex) {

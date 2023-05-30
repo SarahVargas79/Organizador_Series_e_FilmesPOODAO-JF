@@ -102,14 +102,14 @@ public class jfFilme extends javax.swing.JFrame {
             evt.consume();
         }
     }
-    
+
     /**
      * Método vincula os dados nos campos do formulário na tela.
      */
     public void vincularCampos() {
         FilmeServicos filmeS = ServicosFactory.getFilmeServicos();
-        Filme s = filmeS.buscaFilmes().get(jtFilmes.getSelectedRow());//Vai acessar dentro da lista de séries. "getSelectedRow" pega a linha selecionada na tabela e procura o objeto(tipo: filme) correpondente a essa linha dentro da lista e joga dentro dessa váriavel. A linha selecionada vai correposnder a um índice da lista, vai buscar dentro da lista qual objeto correspondente a esse índice.
-        ImageIcon imagem = new ImageIcon(s.getCaminhoImagem());
+        Filme f = filmeS.buscaFilmes().get(jtFilmes.getSelectedRow());//Vai acessar dentro da lista de séries. "getSelectedRow" pega a linha selecionada na tabela e procura o objeto(tipo: filme) correpondente a essa linha dentro da lista e joga dentro dessa váriavel. A linha selecionada vai correposnder a um índice da lista, vai buscar dentro da lista qual objeto correspondente a esse índice.
+        ImageIcon imagem = new ImageIcon(f.getCaminhoImagem());
         jlImagem.setIcon(new ImageIcon(imagem.getImage().getScaledInstance(jlImagem.getWidth(), jlImagem.getHeight(), Image.SCALE_DEFAULT)));//Setar na jLabel. Pega o objeto imagem que foi declarado
     }
 
@@ -432,10 +432,10 @@ public class jfFilme extends javax.swing.JFrame {
                                     .addComponent(jtfGenero, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
                                     .addComponent(jtfNacionalidade, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jtfAtores, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jtfTitulo, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jtfAnoLancamento, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jtfEmail)
-                                    .addComponent(jtfDuracaoTempo, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                                    .addComponent(jtfDuracaoTempo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jtfAnoLancamento)
+                                    .addComponent(jtfTitulo))))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -534,7 +534,14 @@ public class jfFilme extends javax.swing.JFrame {
 
     private void jtfDuracaoTempoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDuracaoTempoKeyTyped
         // TODO add your handling code here:
-        somenteNum(evt);
+        String numberPonto = "0123456789.";
+        if (jtfDuracaoTempo.getText().length() < 13) {
+            if (!numberPonto.contains(evt.getKeyChar() + "")) {//evento(evt) a tecla que foi teclada.
+                evt.consume();
+            }
+        } else {
+            evt.consume();
+        }
     }//GEN-LAST:event_jtfDuracaoTempoKeyTyped
 
     private void jtfEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfEmailFocusLost
@@ -687,14 +694,14 @@ public class jfFilme extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /* Set the Metal look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
