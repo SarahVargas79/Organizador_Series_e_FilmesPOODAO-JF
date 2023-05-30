@@ -18,6 +18,7 @@ import services.ServicosFactory;
 import services.UsuarioServicos;
 import util.Validadores;
 import view.Login;
+import view.MenuPrincipal;
 
 /**
  *
@@ -455,8 +456,8 @@ public class OrganizadorSeriesFilmesPOO {
         System.out.println("___ Lista de Filmes ___");
         System.out.println("\n");
         FilmeServicos filmeS = ServicosFactory.getFilmeServicos();
-        if (!filmeS.buscaFilmes().isEmpty()) {
-            for (Filme film : filmeS.buscaFilmes()) {
+        if (!filmeS.buscaFilmes(MenuPrincipal.emailLogado).isEmpty()) {
+            for (Filme film : filmeS.buscaFilmes(MenuPrincipal.emailLogado)) {
                 System.out.println(film.toString());
             }
         } else {

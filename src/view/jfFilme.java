@@ -72,7 +72,8 @@ public class jfFilme extends javax.swing.JFrame {
         model.fireTableDataChanged();
         Object rowData[] = new Object[8];//rowData é o vetor para popular a linha da tabela por coluna
         FilmeServicos filmeS = ServicosFactory.getFilmeServicos();
-        for (Filme f : filmeS.buscaFilmes()) {//O vetor sempre começa em 0           
+        String mail = MenuPrincipal.emailLogado;
+        for (Filme f : filmeS.buscaFilmes(mail)) {//O vetor sempre começa em 0           
             rowData[0] = f.getCaminhoImagem();
             rowData[1] = f.getTitulo();
             rowData[2] = f.getAnoLancamento();
@@ -108,7 +109,7 @@ public class jfFilme extends javax.swing.JFrame {
      */
     public void vincularCampos() {
         FilmeServicos filmeS = ServicosFactory.getFilmeServicos();
-        Filme f = filmeS.buscaFilmes().get(jtFilmes.getSelectedRow());//Vai acessar dentro da lista de séries. "getSelectedRow" pega a linha selecionada na tabela e procura o objeto(tipo: filme) correpondente a essa linha dentro da lista e joga dentro dessa váriavel. A linha selecionada vai correposnder a um índice da lista, vai buscar dentro da lista qual objeto correspondente a esse índice.
+        Filme f = filmeS.buscaFilmes(MenuPrincipal.emailLogado).get(jtFilmes.getSelectedRow());//Vai acessar dentro da lista de séries. "getSelectedRow" pega a linha selecionada na tabela e procura o objeto(tipo: filme) correpondente a essa linha dentro da lista e joga dentro dessa váriavel. A linha selecionada vai correposnder a um índice da lista, vai buscar dentro da lista qual objeto correspondente a esse índice.
         ImageIcon imagem = new ImageIcon(f.getCaminhoImagem());
         jlImagem.setIcon(new ImageIcon(imagem.getImage().getScaledInstance(jlImagem.getWidth(), jlImagem.getHeight(), Image.SCALE_DEFAULT)));//Setar na jLabel. Pega o objeto imagem que foi declarado
     }

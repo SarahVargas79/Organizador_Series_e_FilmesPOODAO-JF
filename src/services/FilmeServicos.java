@@ -21,9 +21,9 @@ public class FilmeServicos {
         filmDAO.cadastrarFilmeDAO(filmVO);
     }
 
-    public ArrayList<Filme> buscaFilmes() {
+    public ArrayList<Filme> buscaFilmes(String mail) {
         FilmeDAO filmDAO = DAOFactory.getFilmeDAO();
-        return filmDAO.getFilmesDAO();
+        return filmDAO.getFilmesDAO(mail);
     }
 
     public Filme buscaFilmeTitulo(String titulo) {

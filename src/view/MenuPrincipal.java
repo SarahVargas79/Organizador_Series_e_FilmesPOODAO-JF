@@ -23,6 +23,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);//Para centralizar a janela
     }
+    
+    public static String emailLogado = null;
+
+    public void logado(String email) {
+        emailLogado = email;
+        System.out.println(emailLogado);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

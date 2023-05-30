@@ -46,11 +46,11 @@ public class FilmeDAO {
         }
     }//fim cadastrar
 
-    public ArrayList<Filme> getFilmesDAO() {
+    public ArrayList<Filme> getFilmesDAO(String mail) {
         ArrayList<Filme> filmes = new ArrayList<>();
         try {//Para tratar erros
             Connection con = Conexao.getConexao();
-            String sql = "select filmes.*, e.email from filmes join usuarios e using(idUsuario)";//' para executar para o banco(mysql)
+            String sql = "select filmes.*, e.email from filmes join usuarios e using(idUsuario) where e.email = '" + mail + "'";//' para executar para o banco(mysql)
             Statement stm = con.createStatement();
             UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
             ResultSet rs = stm.executeQuery(sql);//ResultSet estrutura no java, é um meio de campo entre o banco de dados e o java(aplicação).

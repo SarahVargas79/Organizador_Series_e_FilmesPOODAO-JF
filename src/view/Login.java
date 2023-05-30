@@ -206,6 +206,7 @@ public class Login extends javax.swing.JFrame {
                 //Chama a tela 
                 MenuPrincipal menuP = new MenuPrincipal();
                 menuP.setVisible(true);
+                menuP.logado(jtfEmail.getText());
                 setVisible(false);//Para esconder a tela de Login
 
                 JOptionPane.showMessageDialog(this, "Seja Bem-Vindo");
