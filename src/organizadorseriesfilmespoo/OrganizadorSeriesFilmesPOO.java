@@ -200,7 +200,7 @@ public class OrganizadorSeriesFilmesPOO {
         System.out.println("___ Lista de Usuário ___");
 
         UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
-        for (Usuario usu : usuarioS.getUsuarios()) {
+        for (Usuario usu : usuarioS.getUsuarios(MenuPrincipal.emailLogado)) {
             System.out.println("\n---");
             System.out.println("Nome:\t" + usu.getNomeUsuario());//\t faz tabulação
             System.out.println("E-mail:\t" + usu.getEmail());
@@ -335,8 +335,8 @@ public class OrganizadorSeriesFilmesPOO {
         System.out.println("___ Lista de Séries ___");
         System.out.println("\n");
         SerieServicos serieS = ServicosFactory.getSerieServicos();
-        if (!serieS.buscaSeries().isEmpty()) {
-            for (Serie s : serieS.buscaSeries()) {
+        if (!serieS.buscaSeries(MenuPrincipal.emailLogado).isEmpty()) {
+            for (Serie s : serieS.buscaSeries(MenuPrincipal.emailLogado)) {
                 System.out.println(s.toString());
             }
         } else {

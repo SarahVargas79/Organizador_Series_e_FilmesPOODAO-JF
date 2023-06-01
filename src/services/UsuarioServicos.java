@@ -36,8 +36,8 @@ public class UsuarioServicos {
         usuDAO.removerUsuarioDAO(email);
     }
 
-    public ArrayList<Usuario> getUsuarios() {
+    public ArrayList<Usuario> getUsuarios(String mail) {
         UsuarioDAO usuDAO = DAOFactory.getUsuarioDAO();
-        return usuDAO.getUsuariosDAO();
+        return usuDAO.getUsuariosDAO(mail);
     }
 }

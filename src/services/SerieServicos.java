@@ -21,9 +21,9 @@ public class SerieServicos {
         sDAO.cadastrarSerieDAO(sVO);
     }
 
-    public ArrayList<Serie> buscaSeries() {
+    public ArrayList<Serie> buscaSeries(String mail) {
         SerieDAO sDAO = DAOFactory.getSerieDAO();
-        return sDAO.getSeriesDAO();
+        return sDAO.getSeriesDAO(mail);
     }
 
     public Serie buscaSerieTitulo(String titulo) {

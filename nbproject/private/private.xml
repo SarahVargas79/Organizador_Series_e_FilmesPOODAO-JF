@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/182010049/Documents/NetBeansProjects/OrganizadorSeriesFilmesPOODAO-JF/src/view/Login.java</file>
-            <file>file:/C:/Users/182010049/Documents/NetBeansProjects/OrganizadorSeriesFilmesPOODAO-JF/src/view/TelaCadastro.java</file>
-            <file>file:/C:/Users/182010049/Documents/NetBeansProjects/OrganizadorSeriesFilmesPOODAO-JF/src/view/jfUsuario.java</file>
-            <file>file:/C:/Users/182010049/Documents/NetBeansProjects/OrganizadorSeriesFilmesPOODAO-JF/src/view/MenuPrincipal.java</file>
+            <file>file:/C:/Users/sarin/OneDrive/Documentos/NetBeansProjects/Organizador_Series_e_FilmesPOODAO-JF/src/controller/CFilme.java</file>
+            <file>file:/C:/Users/sarin/OneDrive/Documentos/NetBeansProjects/Organizador_Series_e_FilmesPOODAO-JF/src/view/jfSerie.java</file>
+            <file>file:/C:/Users/sarin/OneDrive/Documentos/NetBeansProjects/Organizador_Series_e_FilmesPOODAO-JF/src/view/jfFilme.java</file>
+            <file>file:/C:/Users/sarin/OneDrive/Documentos/NetBeansProjects/Organizador_Series_e_FilmesPOODAO-JF/src/view/MenuPrincipal.java</file>
+            <file>file:/C:/Users/sarin/OneDrive/Documentos/NetBeansProjects/Organizador_Series_e_FilmesPOODAO-JF/src/view/Login.java</file>
         </group>
     </open-files>
 </project-private>

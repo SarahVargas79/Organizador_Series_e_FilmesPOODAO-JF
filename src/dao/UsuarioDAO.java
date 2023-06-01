@@ -40,12 +40,12 @@ public class UsuarioDAO {
         }
     }//fim cadastrar
 
-    public ArrayList<Usuario> getUsuariosDAO() {
+    public ArrayList<Usuario> getUsuariosDAO(String mail) {
         ArrayList<Usuario> usuarios = new ArrayList<>();
         try {//Para tratar erros
             Connection con = Conexao.getConexao();
             Statement stat = con.createStatement();
-            String sql = "select * from usuarios";//' para executar para o banco(mysql)
+            String sql = "select * from usuarios where email = '" + mail + "'";//' para executar para o banco(mysql)
             ResultSet rs = stat.executeQuery(sql);//ResultSet estrutura no java, é um meio de campo entre o banco de dados e o java(aplicação).
             while (rs.next()) {
                 Usuario usu = new Usuario();//objeto usuario

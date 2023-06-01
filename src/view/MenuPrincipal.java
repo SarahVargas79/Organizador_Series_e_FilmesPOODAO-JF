@@ -26,9 +26,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     public static String emailLogado = null;
 
-    public void logado(String email) {
+    public void logado(String email) {//Método criado para só o email de tal usuário vai ter acesso as séries e filmes cadastrados, como também o usuário vai ter acesso só a seu email cadastrado.
         emailLogado = email;
-        System.out.println(emailLogado);
     }
 
     /**

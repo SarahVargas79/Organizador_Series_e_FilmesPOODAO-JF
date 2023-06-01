@@ -1,12 +1,20 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Heades in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the usuor.
  */
 package view;
 
+import com.mysql.cj.xdevapi.Result;
+import conexao.Conexao;
+import dao.SerieDAO;
 import java.awt.Image;
 import java.io.File;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -26,6 +34,7 @@ public class jfSerie extends javax.swing.JFrame {
     /**
      * Creates new form jfSerie
      */
+    
     public jfSerie() {
         initComponents();
         addRowToTable();
@@ -76,7 +85,8 @@ public class jfSerie extends javax.swing.JFrame {
         model.fireTableDataChanged();
         Object rowData[] = new Object[9];//rowData é o vetor para popular a linha da tabela por coluna
         SerieServicos serieS = ServicosFactory.getSerieServicos();
-        for (Serie s : serieS.buscaSeries()) {//O vetor sempre começa em 0
+        String mail = MenuPrincipal.emailLogado;
+        for (Serie s : serieS.buscaSeries(mail)) {//O vetor sempre começa em 0
             rowData[0] = s.getCaminhoImagem();
             rowData[1] = s.getTitulo();
             rowData[2] = s.getAnoLancamento();
@@ -113,7 +123,7 @@ public class jfSerie extends javax.swing.JFrame {
      */
     public void vincularCampos() {
         SerieServicos serieS = ServicosFactory.getSerieServicos();
-        Serie s = serieS.buscaSeries().get(jtSeries.getSelectedRow());//Vai acessar dentro da lista de séries. "getSelectedRow" pega a linha selecionada na tabela e procura o objeto(tipo: serie) correpondente a essa linha dentro da lista e joga dentro dessa váriavel. A linha selecionada vai correposnder a um índice da lista, vai buscar dentro da lista qual objeto correspondente a esse índice.
+        Serie s = serieS.buscaSeries(MenuPrincipal.emailLogado).get(jtSeries.getSelectedRow());//Vai acessar dentro da lista de séries. "getSelectedRow" pega a linha selecionada na tabela e procura o objeto(tipo: serie) correpondente a essa linha dentro da lista e joga dentro dessa váriavel. A linha selecionada vai correposnder a um índice da lista, vai buscar dentro da lista qual objeto correspondente a esse índice.
         ImageIcon imagem = new ImageIcon(s.getCaminhoImagem());
         jlImagem.setIcon(new ImageIcon(imagem.getImage().getScaledInstance(jlImagem.getWidth(), jlImagem.getHeight(), Image.SCALE_DEFAULT)));//Setar na jLabel. Pega o objeto imagem que foi declarado
     }
@@ -156,6 +166,8 @@ public class jfSerie extends javax.swing.JFrame {
         jtSeries = new javax.swing.JTable();
         jbADDImagem = new javax.swing.JButton();
         jtfCaminho = new javax.swing.JTextField();
+        jtfPesquisa = new javax.swing.JTextField();
+        jbPesquisa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerência Série");
@@ -411,6 +423,20 @@ public class jfSerie extends javax.swing.JFrame {
         jtfCaminho.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jtfCaminho.setCaretColor(new java.awt.Color(0, 0, 0));
 
+        jtfPesquisa.setBackground(new java.awt.Color(104, 127, 127));
+        jtfPesquisa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jbPesquisa.setBackground(new java.awt.Color(71, 82, 82));
+        jbPesquisa.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
+        jbPesquisa.setForeground(new java.awt.Color(255, 255, 255));
+        jbPesquisa.setText("Pesquisar");
+        jbPesquisa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jbPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPesquisaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -465,16 +491,22 @@ public class jfSerie extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jtfEpisodio, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
                                     .addComponent(jtfEmail, javax.swing.GroupLayout.Alignment.LEADING)))))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jtfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -506,7 +538,6 @@ public class jfSerie extends javax.swing.JFrame {
                             .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -518,7 +549,11 @@ public class jfSerie extends javax.swing.JFrame {
                     .addComponent(jbADDImagem)
                     .addComponent(jtfCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbPesquisa))
                 .addContainerGap())
         );
 
@@ -722,6 +757,32 @@ public class jfSerie extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbADDImagemActionPerformed
 
+    private void jbPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisaActionPerformed
+        // Chamando estrutura pesquisa
+        Pesquisa(jbPesquisa.getText());
+    }//GEN-LAST:event_jbPesquisaActionPerformed
+  
+    public void Pesquisa(String pesq) {
+        DefaultTableModel model = (DefaultTableModel) jtSeries.getModel();
+        model.setNumRows(0);
+        SerieDAO sDAO = new SerieDAO();
+        String mail = MenuPrincipal.emailLogado;
+        for (Serie s : sDAO.Pesquisa(mail)) {
+            
+            model.addRow(new Object[]{
+                s.getCaminhoImagem(),
+            s.getTitulo(),
+            s.getAnoLancamento(),
+            s.getNomeAtor(),
+            s.getNacionalidade(),
+            s.getGenero(),
+            s.getTemporada(),
+            s.getEpisodio(),
+            s.getIdUsuario(),
+            });
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -775,6 +836,7 @@ public class jfSerie extends javax.swing.JFrame {
     private javax.swing.JButton jbExcluir;
     private javax.swing.JButton jbFechar;
     private javax.swing.JButton jbLimpar;
+    private javax.swing.JButton jbPesquisa;
     private javax.swing.JButton jbSalvar;
     private javax.swing.JLabel jlImagem;
     private javax.swing.JTable jtSeries;
@@ -785,6 +847,7 @@ public class jfSerie extends javax.swing.JFrame {
     private javax.swing.JTextField jtfEpisodio;
     private javax.swing.JTextField jtfGenero;
     private javax.swing.JTextField jtfNacionalidade;
+    private javax.swing.JTextField jtfPesquisa;
     private javax.swing.JTextField jtfTemporada;
     private javax.swing.JTextField jtfTitulo;
     // End of variables declaration//GEN-END:variables
