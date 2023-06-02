@@ -781,6 +781,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfPesquisaKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbPesquisa">
           <Properties>

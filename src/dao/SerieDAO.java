@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import model.Serie;
 import services.ServicosFactory;
 import services.UsuarioServicos;
@@ -133,37 +132,4 @@ public class SerieDAO {
             System.out.println("\nErro ao remover série!\n" + ex.getMessage());
         }
     }//fim removerSerie
-    
-    public ArrayList<Serie> Pesquisa(String pesq) {
-        ArrayList<Serie> series = new ArrayList<>();
-        try {//Para tratar erros
-                    UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
-
-            Connection con = Conexao.getConexao();
-            String sql = "select * from series where titulo";//' para executar para o banco(mysql)
-            PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, "%"+pesq+"%");
-            ResultSet rs = pst.executeQuery();//ResultSet estrutura no java, é um meio de campo entre o banco de dados e o java(aplicação).
-            while (rs.next()) {
-                Serie s = new Serie();//objeto cliente
-                //lado do java |x| (lado do banco)
-                s.setIdSerie(rs.getByte("idSerie"));
-                s.setCaminhoImagem(rs.getString("caminhoImagem"));
-                s.setTitulo(rs.getString("titulo"));
-                s.setAnoLancamento(rs.getInt("anoLancamento"));
-                s.setGenero(rs.getString("genero"));
-                s.setNomeAtor(rs.getString("nomeAtor"));
-                s.setNacionalidade(rs.getString("nacionalidade"));
-                s.setTemporada(rs.getInt("temporada"));
-                s.setEpisodio(rs.getInt("episodio"));
-                s.setIdUsuario(usuarioS.buscarUsuariobyEmail(rs.getString("email")));
-                series.add(s);
-            }
-        }  catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "SerieDAO Pesquisar: " + erro);
-        }
-        
-        return series;
-    }//fim listar
-    
 }

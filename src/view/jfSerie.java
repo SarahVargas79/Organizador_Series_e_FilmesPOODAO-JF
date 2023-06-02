@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -24,7 +25,7 @@ import model.Usuario;
 import services.SerieServicos;
 import services.ServicosFactory;
 import services.UsuarioServicos;
-
+import net.proteanit.sql.DbUtils;
 /**
  *
  * @author sarin
@@ -425,6 +426,11 @@ public class jfSerie extends javax.swing.JFrame {
 
         jtfPesquisa.setBackground(new java.awt.Color(104, 127, 127));
         jtfPesquisa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jtfPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtfPesquisaKeyReleased(evt);
+            }
+        });
 
         jbPesquisa.setBackground(new java.awt.Color(71, 82, 82));
         jbPesquisa.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
@@ -687,6 +693,7 @@ public class jfSerie extends javax.swing.JFrame {
         jbAlterar.setEnabled(true);
         jbExcluir.setVisible(true);
         vincularCampos();
+        setarCampos();
     }//GEN-LAST:event_jtSeriesMouseClicked
 
     private void jtfTemporadaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTemporadaKeyTyped
@@ -759,29 +766,41 @@ public class jfSerie extends javax.swing.JFrame {
 
     private void jbPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisaActionPerformed
         // Chamando estrutura pesquisa
-        Pesquisa(jbPesquisa.getText());
     }//GEN-LAST:event_jbPesquisaActionPerformed
+
+    private void jtfPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesquisaKeyReleased
+        // Em quanto vai digitando, o KeyReleased vai dinâmicamente preeechendo a tabela.
+        pesquisaSerie();
+    }//GEN-LAST:event_jtfPesquisaKeyReleased
   
-    public void Pesquisa(String pesq) {
-        DefaultTableModel model = (DefaultTableModel) jtSeries.getModel();
-        model.setNumRows(0);
-        SerieDAO sDAO = new SerieDAO();
-        String mail = MenuPrincipal.emailLogado;
-        for (Serie s : sDAO.Pesquisa(mail)) {
-            
-            model.addRow(new Object[]{
-                s.getCaminhoImagem(),
-            s.getTitulo(),
-            s.getAnoLancamento(),
-            s.getNomeAtor(),
-            s.getNacionalidade(),
-            s.getGenero(),
-            s.getTemporada(),
-            s.getEpisodio(),
-            s.getIdUsuario(),
-            });
+    public void pesquisaSerie() {
+        String sql = "select * from series where titulo like ?";//' para executar para o banco(mysql)
+
+        try {//Para tratar erros
+            Connection con = Conexao.getConexao();
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, jtfPesquisa.getText() + "%");
+            ResultSet rs = pst.executeQuery();//ResultSet estrutura no java, é um meio de campo entre o banco de dados e o java(aplicação).
+            jtSeries.setModel(DbUtils.resultSetToTableModel(rs));
+        }  catch (SQLException erro) {
+            JOptionPane.showMessageDialog(this, "Série Pesquisar: " + erro);
         }
+        
+         
+    }//fim listar
+    
+    public void setarCampos() {
+        int setar = jtSeries.getSelectedRow();
+        jtfTitulo.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
+        jtfAnoLancamento.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
+        jtfAtores.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
+        jtfNacionalidade.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
+        jtfGenero.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
+        jtfTemporada.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
+        jtfEpisodio.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
+        jtfEmail.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
     }
+   
     
     /**
      * @param args the command line arguments
