@@ -6,12 +6,17 @@
 package dao;
 
 import conexao.Conexao;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Usuario;
 
 /**
@@ -19,6 +24,18 @@ import model.Usuario;
  * @author sarin
  */
 public class UsuarioDAO {
+
+    public static String geraSenha(String senha) throws NoSuchAlgorithmException,
+            UnsupportedEncodingException {
+        MessageDigest mdMD5 = MessageDigest.getInstance("MD5");
+        byte mdByteMD5[] = mdMD5.digest(senha.getBytes("UTF-8"));
+        StringBuilder hexMDMD5 = new StringBuilder();
+        for (byte b : mdByteMD5) {
+            hexMDMD5.append(String.format("%02X", 0xFF & b));
+        }
+        String senhaMD5HashHex = hexMDMD5.toString();
+        return senhaMD5HashHex;
+    }
 
     public void cadastrarUsuarioDAO(Usuario usuVO) {
 
@@ -32,11 +49,17 @@ public class UsuarioDAO {
             //Estes são os paramêtros
             pst.setString(1, usuVO.getNomeUsuario());
             pst.setString(2, usuVO.getEmail());
-            pst.setString(3, usuVO.getSenha());
-            pst.setString(4, usuVO.getConfirmaSenha());
+            String pass = geraSenha(usuVO.getSenha());
+            pst.setString(3, pass);
+            String passC = geraSenha(usuVO.getConfirmaSenha());
+            pst.setString(4, passC);
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("\nErro ao cadastrar!\n" + ex.getMessage());
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//fim cadastrar
 

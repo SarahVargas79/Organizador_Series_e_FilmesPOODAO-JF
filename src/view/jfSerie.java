@@ -5,7 +5,7 @@
  */
 package view;
 
-import com.mysql.cj.xdevapi.Result;
+
 import conexao.Conexao;
 import dao.SerieDAO;
 import java.awt.Image;
@@ -168,7 +168,7 @@ public class jfSerie extends javax.swing.JFrame {
         jbADDImagem = new javax.swing.JButton();
         jtfCaminho = new javax.swing.JTextField();
         jtfPesquisa = new javax.swing.JTextField();
-        jbPesquisa = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerência Série");
@@ -432,16 +432,9 @@ public class jfSerie extends javax.swing.JFrame {
             }
         });
 
-        jbPesquisa.setBackground(new java.awt.Color(71, 82, 82));
-        jbPesquisa.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
-        jbPesquisa.setForeground(new java.awt.Color(255, 255, 255));
-        jbPesquisa.setText("Pesquisar");
-        jbPesquisa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jbPesquisa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbPesquisaActionPerformed(evt);
-            }
-        });
+        jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Pesquisa");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -500,7 +493,7 @@ public class jfSerie extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtfPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -559,7 +552,7 @@ public class jfSerie extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbPesquisa))
+                    .addComponent(jLabel10))
                 .addContainerGap())
         );
 
@@ -693,7 +686,6 @@ public class jfSerie extends javax.swing.JFrame {
         jbAlterar.setEnabled(true);
         jbExcluir.setVisible(true);
         vincularCampos();
-        setarCampos();
     }//GEN-LAST:event_jtSeriesMouseClicked
 
     private void jtfTemporadaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTemporadaKeyTyped
@@ -764,21 +756,19 @@ public class jfSerie extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbADDImagemActionPerformed
 
-    private void jbPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisaActionPerformed
-        // Chamando estrutura pesquisa
-    }//GEN-LAST:event_jbPesquisaActionPerformed
-
     private void jtfPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPesquisaKeyReleased
         // Em quanto vai digitando, o KeyReleased vai dinâmicamente preeechendo a tabela.
         pesquisaSerie();
     }//GEN-LAST:event_jtfPesquisaKeyReleased
   
     public void pesquisaSerie() {
-        String sql = "select * from series where titulo like ?";//' para executar para o banco(mysql)
+        String mail = MenuPrincipal.emailLogado;
+        String sql2 = "select series.*, e.email from series join usuarios e using(idUsuario) where titulo like ? AND e.email = ?";//' para executar para o banco(mysql)
 
         try {//Para tratar erros
             Connection con = Conexao.getConexao();
-            PreparedStatement pst = con.prepareStatement(sql);
+            PreparedStatement pst = con.prepareStatement(sql2);
+            pst.setString(2, mail);
             pst.setString(1, jtfPesquisa.getText() + "%");
             ResultSet rs = pst.executeQuery();//ResultSet estrutura no java, é um meio de campo entre o banco de dados e o java(aplicação).
             jtSeries.setModel(DbUtils.resultSetToTableModel(rs));
@@ -788,18 +778,6 @@ public class jfSerie extends javax.swing.JFrame {
         
          
     }//fim listar
-    
-    public void setarCampos() {
-        int setar = jtSeries.getSelectedRow();
-        jtfTitulo.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
-        jtfAnoLancamento.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
-        jtfAtores.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
-        jtfNacionalidade.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
-        jtfGenero.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
-        jtfTemporada.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
-        jtfEpisodio.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
-        jtfEmail.setText(jtSeries.getModel().getValueAt(setar, 0).toString());
-    }
    
     
     /**
@@ -839,6 +817,7 @@ public class jfSerie extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -855,7 +834,6 @@ public class jfSerie extends javax.swing.JFrame {
     private javax.swing.JButton jbExcluir;
     private javax.swing.JButton jbFechar;
     private javax.swing.JButton jbLimpar;
-    private javax.swing.JButton jbPesquisa;
     private javax.swing.JButton jbSalvar;
     private javax.swing.JLabel jlImagem;
     private javax.swing.JTable jtSeries;

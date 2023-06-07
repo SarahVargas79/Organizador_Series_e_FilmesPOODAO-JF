@@ -6,10 +6,15 @@
 package view;
 
 import conexao.Conexao;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,6 +43,18 @@ public class Login extends javax.swing.JFrame {
         }
         return true;
     }//fim validaInputs
+
+    public static String geraSenha(String senha) throws NoSuchAlgorithmException,
+            UnsupportedEncodingException {
+        MessageDigest mdMD5 = MessageDigest.getInstance("MD5");
+        byte mdByteMD5[] = mdMD5.digest(senha.getBytes("UTF-8"));
+        StringBuilder hexMDMD5 = new StringBuilder();
+        for (byte b : mdByteMD5) {
+            hexMDMD5.append(String.format("%02X", 0xFF & b));
+        }
+        String senhaMD5HashHex = hexMDMD5.toString();
+        return senhaMD5HashHex;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -198,7 +215,9 @@ public class Login extends javax.swing.JFrame {
             String sql = "select * from usuarios where email = ? and senha = ?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, jtfEmail.getText());
-            pst.setString(2, new String(jpfSenha.getPassword()));
+            String senha =  new String(jpfSenha.getPassword());
+            String pass = geraSenha(senha);
+            pst.setString(2, pass);
             //A linha abaixo executa a query, vai fazer a pesquisa no BD.
             ResultSet rs = pst.executeQuery();
             //Se existir usuário e senha correspondente.
@@ -215,6 +234,10 @@ public class Login extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {//Caso ocorra alguma exceção.
             ex.printStackTrace();//Variável ex vai exibir a mensagem de erro.
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbEntrarActionPerformed
 
