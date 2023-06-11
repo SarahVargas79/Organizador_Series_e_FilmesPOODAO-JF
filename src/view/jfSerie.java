@@ -5,17 +5,13 @@
  */
 package view;
 
-
 import conexao.Conexao;
-import dao.SerieDAO;
 import java.awt.Image;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -26,6 +22,7 @@ import services.SerieServicos;
 import services.ServicosFactory;
 import services.UsuarioServicos;
 import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author sarin
@@ -35,7 +32,6 @@ public class jfSerie extends javax.swing.JFrame {
     /**
      * Creates new form jfSerie
      */
-    
     public jfSerie() {
         initComponents();
         addRowToTable();
@@ -480,7 +476,6 @@ public class jfSerie extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jtfAnoLancamento)
                                     .addComponent(jtfGenero, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtfTitulo)
                                     .addComponent(jtfAtores)
                                     .addComponent(jtfNacionalidade)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -489,7 +484,8 @@ public class jfSerie extends javax.swing.JFrame {
                                         .addComponent(jLabel9)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jtfEpisodio, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
-                                    .addComponent(jtfEmail, javax.swing.GroupLayout.Alignment.LEADING)))))
+                                    .addComponent(jtfEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtfTitulo)))))
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -502,10 +498,9 @@ public class jfSerie extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
+                        .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jtfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -534,11 +529,11 @@ public class jfSerie extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                            .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbFechar)
                     .addComponent(jbLimpar)
@@ -760,26 +755,24 @@ public class jfSerie extends javax.swing.JFrame {
         // Em quanto vai digitando, o KeyReleased vai dinâmicamente preeechendo a tabela.
         pesquisaSerie();
     }//GEN-LAST:event_jtfPesquisaKeyReleased
-  
+
     public void pesquisaSerie() {
         String mail = MenuPrincipal.emailLogado;
-        String sql2 = "select series.*, e.email from series join usuarios e using(idUsuario) where titulo like ? AND e.email = ?";//' para executar para o banco(mysql)
+        String sql = "select series.*, e.email from series join usuarios e using(idUsuario) where titulo like ? and e.email = ?";//' para executar para o banco(mysql)
 
         try {//Para tratar erros
             Connection con = Conexao.getConexao();
-            PreparedStatement pst = con.prepareStatement(sql2);
-            pst.setString(2, mail);
+            PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, jtfPesquisa.getText() + "%");
+            pst.setString(2, mail);
             ResultSet rs = pst.executeQuery();//ResultSet estrutura no java, é um meio de campo entre o banco de dados e o java(aplicação).
             jtSeries.setModel(DbUtils.resultSetToTableModel(rs));
-        }  catch (SQLException erro) {
+        } catch (SQLException erro) {
             JOptionPane.showMessageDialog(this, "Série Pesquisar: " + erro);
         }
-        
-         
+
     }//fim listar
-   
-    
+
     /**
      * @param args the command line arguments
      */

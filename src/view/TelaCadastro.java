@@ -359,7 +359,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             String senha = new String(jpfSenha.getPassword());
             String confirmarSenha = new String(jpfConfirmaSenha.getPassword());
             UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
-            Usuario usu = new Usuario(idUsuario, nomeUsuario, email, senha, confirmarSenha, senha, senha, confirmarSenha);
+            Usuario usu = new Usuario(idUsuario, nomeUsuario, email, senha, confirmarSenha, senha, confirmarSenha);
 
             Usuario usuarios = new Usuario();
             usuarios.setNomeUsuario(jtfNome.getText());

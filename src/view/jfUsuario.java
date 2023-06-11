@@ -308,9 +308,9 @@ public class jfUsuario extends javax.swing.JFrame {
                     .addComponent(jbLimpar)
                     .addComponent(jbAlterar)
                     .addComponent(jbSalvar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -401,11 +401,11 @@ public class jfUsuario extends javax.swing.JFrame {
             String confirmarSenha = new String(jpfConfirmaSenha.getPassword());
             UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
 
-            Usuario c = new Usuario(idUsuario, nomeUsuario, email, senha, confirmarSenha, senha, senha, confirmarSenha);
+            Usuario usu = new Usuario(idUsuario, nomeUsuario, email, senha, confirmarSenha, senha, confirmarSenha);
             if (jbSalvar.getText().equals("Salvar")) {
-                usuarioS.cadUsuario(c);
+                usuarioS.cadUsuario(usu);
             } else {
-                usuarioS.atualizarUsuario(c);
+                usuarioS.atualizarUsuario(usu);
                 jbLimpar.doClick();
             }
             limparCampos();

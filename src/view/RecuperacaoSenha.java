@@ -39,10 +39,6 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Preencher e-mail!");
             jtfEmail.requestFocus();
             return false;
-        } else if (new String(jpfSenhaAtual.getPassword()).equals("")) {
-            JOptionPane.showMessageDialog(this, "Preencher senha atual!");
-            jpfSenhaAtual.requestFocus();
-            return false;
         } else if (new String(jpfNovaSenha.getPassword()).equals("")) {
             JOptionPane.showMessageDialog(this, "Preencher nova senha!");
             jpfNovaSenha.requestFocus();
@@ -69,12 +65,10 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jtfNome = new javax.swing.JTextField();
         jtfEmail = new javax.swing.JTextField();
-        jpfSenhaAtual = new javax.swing.JPasswordField();
         jpfNovaSenha = new javax.swing.JPasswordField();
         jpfConfirmaNovaSenha = new javax.swing.JPasswordField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -106,10 +100,6 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("E-mail:");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Senha atual:");
-
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 17)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nova senha:");
@@ -137,17 +127,6 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
         jtfEmail.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jtfEmailFocusLost(evt);
-            }
-        });
-
-        jpfSenhaAtual.setBackground(new java.awt.Color(42, 48, 58));
-        jpfSenhaAtual.setForeground(new java.awt.Color(255, 255, 255));
-        jpfSenhaAtual.setToolTipText("Informe senha cadastrada");
-        jpfSenhaAtual.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jpfSenhaAtual.setCaretColor(new java.awt.Color(255, 255, 255));
-        jpfSenhaAtual.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jpfSenhaAtualFocusLost(evt);
             }
         });
 
@@ -248,30 +227,25 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpfNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jpfSenhaAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(1, 1, 1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jpfConfirmaNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jpfNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(1, 1, 1)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -279,7 +253,7 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addGap(31, 31, 31)
+                .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jtfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -289,17 +263,13 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
                     .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jpfSenhaAtual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jpfNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jpfConfirmaNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -360,27 +330,6 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jtfEmailFocusLost
 
-    private void jpfSenhaAtualFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpfSenhaAtualFocusLost
-        // TODO add your handling code here:
-        try {
-            Connection con = Conexao.getConexao();
-            //As linhas abaixo preparam a consulta ao banco em função do que foi digitado nas caixas de texto.
-            String sql = "select * from usuarios where senha = ?";
-            PreparedStatement pst = con.prepareStatement(sql);
-            pst.setString(1, new String(jpfSenhaAtual.getPassword()));
-            //A linha abaixo executa a query, vai fazer a pesquisa no BD.
-            ResultSet rs = pst.executeQuery();
-            //Se existir usuário e senha correspondente.
-            if (rs.next()) {
-
-            } else {
-                JOptionPane.showMessageDialog(this, "Senha inválida ou incorreta", "Erro senha", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (SQLException ex) {//Caso ocorra alguma exceção.
-            ex.printStackTrace();//Variável ex vai exibir a mensagem de erro.
-        }
-    }//GEN-LAST:event_jpfSenhaAtualFocusLost
-
     private void jpfNovaSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpfNovaSenhaFocusLost
         if (!new String(jpfNovaSenha.getPassword()).equals("")) {
             if (!Validadores.senhaForte(new String(jpfNovaSenha.getPassword()))) {
@@ -409,7 +358,6 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
     public void limparCampos() {
         jtfNome.setText("");
         jtfEmail.setText("");
-        jpfSenhaAtual.setText("");
         jpfNovaSenha.setText("");
         jpfConfirmaNovaSenha.setText("");
         jtfEmail.requestFocus();
@@ -425,12 +373,11 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
             int idusuario = 0;
             String nomeUsuario = jtfNome.getText();
             String email = jtfEmail.getText();
-            String senhaAtual = new String(jpfSenhaAtual.getPassword());
             String novaSenha = new String(jpfNovaSenha.getPassword());
             String confirmaNovaSenha = new String(jpfConfirmaNovaSenha.getPassword());
             UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
 
-            Usuario usu = new Usuario(idusuario, nomeUsuario, email, novaSenha, confirNovaSenha, senhaAtual, novaSenha, confirmaNovaSenha);
+            Usuario usu = new Usuario(idusuario, nomeUsuario, email, novaSenha, confirNovaSenha, novaSenha, confirmaNovaSenha);
             
             if (senhaNova.equals(confirNovaSenha)) {
                 usuarioS.atualizarUsuario(usu);
@@ -494,7 +441,6 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -507,7 +453,6 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
     private javax.swing.JButton jbSalvar;
     private javax.swing.JPasswordField jpfConfirmaNovaSenha;
     private javax.swing.JPasswordField jpfNovaSenha;
-    private javax.swing.JPasswordField jpfSenhaAtual;
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfNome;
     // End of variables declaration//GEN-END:variables

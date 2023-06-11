@@ -15,7 +15,6 @@ public class Usuario {
     private String email;
     private String senha;
     private String confirmaSenha;
-    private String senhaAtual;
     private String novaSenha;
     private String confirmaNovaSenha;
     
@@ -23,13 +22,12 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nomeUsuario, String email, String senha, String confirmaSenha, String senhaAtual, String novaSenha, String confirmaNovaSenha) {
+    public Usuario(int idUsuario, String nomeUsuario, String email, String senha, String confirmaSenha, String novaSenha, String confirmaNovaSenha) {
         this.idUsuario = idUsuario;
         this.nomeUsuario = nomeUsuario;
         this.email = email;
         this.senha = senha;
         this.confirmaSenha = confirmaSenha;
-        this.senhaAtual = senhaAtual;
         this.novaSenha = novaSenha;
         this.confirmaNovaSenha = confirmaNovaSenha;
     }
@@ -74,14 +72,6 @@ public class Usuario {
         this.confirmaSenha = confirmaSenha;
     }
 
-    public String getSenhaAtual() {
-        return senhaAtual;
-    }
-
-    public void setSenhaAtual(String senhaAtual) {
-        this.senhaAtual = senhaAtual;
-    }
-
     public String getNovaSenha() {
         return novaSenha;
     }
@@ -100,7 +90,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-                return                                                   "Nome do usuário = " + nomeUsuario + ", E-mail = " + email + ", Senha = " + senha + " Confirma senha = " + confirmaSenha + ",| Senha atual = " + senhaAtual + ", Nova senha=" + novaSenha + ", Confirmar nova senha=" + confirmaNovaSenha; 
+                return                                                   "Nome do usuário = " + nomeUsuario + ", E-mail = " + email + ", Senha = " + senha + " Confirma senha = " + confirmaSenha + ",| Nova senha=" + novaSenha + " Confirmar nova senha=" + confirmaNovaSenha; 
     }
        
 }
