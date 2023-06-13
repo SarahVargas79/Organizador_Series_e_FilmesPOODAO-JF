@@ -201,7 +201,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="13" green="c4" red="13" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Esqueceu a senha?"/>
+            <Property name="text" type="java.lang.String" value="Esqueceu sua senha? Clique aqui"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jlEsqueciSenhaMouseClicked"/>

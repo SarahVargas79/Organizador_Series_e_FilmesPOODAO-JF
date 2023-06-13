@@ -140,7 +140,7 @@ public class Login extends javax.swing.JFrame {
 
         jlEsqueciSenha.setFont(new java.awt.Font("Monotype Corsiva", 1, 20)); // NOI18N
         jlEsqueciSenha.setForeground(new java.awt.Color(19, 196, 19));
-        jlEsqueciSenha.setText("Esqueceu a senha?");
+        jlEsqueciSenha.setText("Esqueceu sua senha? Clique aqui");
         jlEsqueciSenha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlEsqueciSenhaMouseClicked(evt);
@@ -226,11 +226,10 @@ public class Login extends javax.swing.JFrame {
                 MenuPrincipal menuP = new MenuPrincipal();
                 menuP.setVisible(true);
                 menuP.logado(jtfEmail.getText());
-                setVisible(false);//Para esconder a tela de Login
 
                 JOptionPane.showMessageDialog(this, "Seja Bem-Vindo");
             } else {
-                JOptionPane.showMessageDialog(this, "Email ou senha incorretos.");
+                JOptionPane.showMessageDialog(this, "Dados de login não conferem");
             }
         } catch (SQLException ex) {//Caso ocorra alguma exceção.
             ex.printStackTrace();//Variável ex vai exibir a mensagem de erro.

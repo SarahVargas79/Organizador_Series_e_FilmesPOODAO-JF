@@ -130,6 +130,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmiUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/vcard.png"))); // NOI18N
         jmiUsuario.setMnemonic('U');
         jmiUsuario.setText("Usuário");
+        jmiUsuario.setToolTipText("Editar, Atualizar e Remover.");
         jmiUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiUsuarioActionPerformed(evt);
@@ -151,6 +152,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmiFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fechar.png"))); // NOI18N
         jmiFechar.setMnemonic('F');
         jmiFechar.setText("Fechar");
+        jmiFechar.setToolTipText("Fechar Organizador");
         jmiFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiFecharActionPerformed(evt);
