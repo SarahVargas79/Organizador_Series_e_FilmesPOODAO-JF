@@ -49,7 +49,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jmiUsuario = new javax.swing.JMenuItem();
         jmiSair = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmiFechar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Menu Principal");
@@ -145,18 +145,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jmiSair.setToolTipText("Fecha a janela");
         jmiSair.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 12)); // NOI18N
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem1.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
-        jMenuItem1.setForeground(new java.awt.Color(0, 0, 0));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fechar.png"))); // NOI18N
-        jMenuItem1.setMnemonic('F');
-        jMenuItem1.setText("Fechar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jmiFechar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmiFechar.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        jmiFechar.setForeground(new java.awt.Color(0, 0, 0));
+        jmiFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/fechar.png"))); // NOI18N
+        jmiFechar.setMnemonic('F');
+        jmiFechar.setText("Fechar");
+        jmiFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jmiFecharActionPerformed(evt);
             }
         });
-        jmiSair.add(jMenuItem1);
+        jmiSair.add(jmiFechar);
 
         jMenuBar1.add(jmiSair);
 
@@ -194,14 +194,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         janelaFilme.setVisible(true);
     }//GEN-LAST:event_jmiFilmeActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jmiFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiFecharActionPerformed
         // TODO add your handling code here:
         close();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jmiFecharActionPerformed
 
     public void close() {
         WindowEvent closeEvent = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeEvent);
+        System.exit(0);
     }
 
     /**
@@ -245,8 +246,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jmiFechar;
     private javax.swing.JMenuItem jmiFilme;
     private javax.swing.JMenu jmiSair;
     private javax.swing.JMenuItem jmiSerie;

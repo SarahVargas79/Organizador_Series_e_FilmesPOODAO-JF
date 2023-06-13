@@ -108,8 +108,8 @@ public class jfSerie extends javax.swing.JFrame {
         }
     }
 
-    public void somenteLetrasAcentos(java.awt.event.KeyEvent evt) {
-        String nletras = "0123456789<>:?/}][{=+-_!|'\'@#$%¨&*()²³£¢¬§º°ª";
+    public void somenteLetrasAcentosAlgunsCaractEspecial(java.awt.event.KeyEvent evt) {
+        String nletras = "0123456789<>:?/}][{=+_!|\'@#$%&*()²³£¢¬§º°ª";
         if (nletras.contains(evt.getKeyChar() + "")) {
             evt.consume();
         }
@@ -474,8 +474,8 @@ public class jfSerie extends javax.swing.JFrame {
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jtfAnoLancamento)
                                     .addComponent(jtfGenero, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtfTitulo)
                                     .addComponent(jtfAtores)
                                     .addComponent(jtfNacionalidade)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -485,7 +485,7 @@ public class jfSerie extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jtfEpisodio, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
                                     .addComponent(jtfEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtfTitulo)))))
+                                    .addComponent(jtfAnoLancamento)))))
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -498,9 +498,10 @@ public class jfSerie extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(jtfTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -529,11 +530,11 @@ public class jfSerie extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbFechar)
                     .addComponent(jbLimpar)
@@ -695,17 +696,17 @@ public class jfSerie extends javax.swing.JFrame {
 
     private void jtfAtoresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAtoresKeyTyped
         // TODO add your handling code here:
-        somenteLetrasAcentos(evt);
+        somenteLetrasAcentosAlgunsCaractEspecial(evt);
     }//GEN-LAST:event_jtfAtoresKeyTyped
 
     private void jtfNacionalidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNacionalidadeKeyTyped
         // TODO add your handling code here:
-        somenteLetrasAcentos(evt);
+        somenteLetrasAcentosAlgunsCaractEspecial(evt);
     }//GEN-LAST:event_jtfNacionalidadeKeyTyped
 
     private void jtfGeneroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfGeneroKeyTyped
         // TODO add your handling code here:
-        somenteLetrasAcentos(evt);
+        somenteLetrasAcentosAlgunsCaractEspecial(evt);
     }//GEN-LAST:event_jtfGeneroKeyTyped
 
     private void jtfEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfEmailFocusLost

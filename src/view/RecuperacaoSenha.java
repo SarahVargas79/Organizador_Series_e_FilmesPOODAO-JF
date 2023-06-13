@@ -6,10 +6,15 @@
 package view;
 
 import conexao.Conexao;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Usuario;
 import services.ServicosFactory;
@@ -50,6 +55,18 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
         }
         return true;
     }//fim validaInputs
+
+    public static String geraSenha(String senha) throws NoSuchAlgorithmException,
+            UnsupportedEncodingException {
+        MessageDigest mdMD5 = MessageDigest.getInstance("MD5");
+        byte mdByteMD5[] = mdMD5.digest(senha.getBytes("UTF-8"));
+        StringBuilder hexMDMD5 = new StringBuilder();
+        for (byte b : mdByteMD5) {
+            hexMDMD5.append(String.format("%02X", 0xFF & b));
+        }
+        String senhaMD5HashHex = hexMDMD5.toString();
+        return senhaMD5HashHex;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -364,29 +381,42 @@ public class RecuperacaoSenha extends javax.swing.JFrame {
     }//GEN-LAST:event_jbLimparActionPerformed
 
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
-        // TODO add your handling code here:
-        String senhaNova = new String(jpfNovaSenha.getPassword());
-        String confirNovaSenha = new String(jpfConfirmaNovaSenha.getPassword());
+        try {
+            // TODO add your handling code here:
+            String senhaNova;
+            senhaNova = geraSenha(jpfNovaSenha.getText());
+            String confirNovaSenha;
+            confirNovaSenha = geraSenha(jpfConfirmaNovaSenha.getText());
 
-        if (validaInputs()) {
-            //Pegar dados da tela para salvar
-            int idusuario = 0;
-            String nomeUsuario = jtfNome.getText();
-            String email = jtfEmail.getText();
-            String novaSenha = new String(jpfNovaSenha.getPassword());
-            String confirmaNovaSenha = new String(jpfConfirmaNovaSenha.getPassword());
-            UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
+            if (validaInputs()) {
+                //Pegar dados da tela para salvar
+                int idusuario = 0;
+                String nomeUsuario = jtfNome.getText();
+                String email = jtfEmail.getText();
+                
+                String novaSenha;
+                novaSenha = geraSenha(jpfNovaSenha.getText());
 
-            Usuario usu = new Usuario(idusuario, nomeUsuario, email, novaSenha, confirNovaSenha, novaSenha, confirmaNovaSenha);
-            
-            if (senhaNova.equals(confirNovaSenha)) {
-                usuarioS.atualizarUsuario(usu);
-                JOptionPane.showMessageDialog(this, "Senha alterada com sucesso!");
-                jbLimpar.doClick();
-            } else {
-                JOptionPane.showMessageDialog(this, "Senhas não conferem", "Erro confirmar senha", JOptionPane.ERROR_MESSAGE);
+                String confirmaNovaSenha;
+                confirmaNovaSenha = geraSenha(jpfConfirmaNovaSenha.getText());
+                
+                UsuarioServicos usuarioS = ServicosFactory.getUsuarioServicos();
+
+                Usuario usu = new Usuario(idusuario, nomeUsuario, email, novaSenha, confirNovaSenha, novaSenha, confirmaNovaSenha);
+
+                if (senhaNova.equals(confirNovaSenha)) {
+                    usuarioS.atualizarUsuario(usu);
+                    JOptionPane.showMessageDialog(this, "Senha alterada com sucesso!");
+                    jbLimpar.doClick();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Senhas não conferem", "Erro confirmar senha", JOptionPane.ERROR_MESSAGE);
+                }
+                limparCampos();
             }
-            limparCampos();
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(RecuperacaoSenha.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(RecuperacaoSenha.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
