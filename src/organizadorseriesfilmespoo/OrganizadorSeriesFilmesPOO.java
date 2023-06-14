@@ -303,7 +303,6 @@ public class OrganizadorSeriesFilmesPOO {
         if (s.getTitulo() != null) {
             System.out.println("\nSérie selecionada: " + s.getTitulo());
             System.out.println("O que deseja alterar: ");
-            System.out.println("1 - Temporada: \t" + s.getTemporada());
             System.out.println("2 - Episódio: \t" + s.getEpisodio());
             System.out.println("3 - Todos os campos acima? ");
             System.out.println("0 - Cancelar");

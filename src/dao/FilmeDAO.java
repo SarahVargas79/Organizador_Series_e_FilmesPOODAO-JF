@@ -105,11 +105,13 @@ public class FilmeDAO {
 
         try {
             Connection con = Conexao.getConexao();
-            String sql = "update filmes set caminhoImagem = ?, duracaoEspera = ? where titulo = ?";
+            String sql = "update filmes set caminhoImagem = ?, nomeAtor = ?, nacionalidade = ?, duracaoEspera = ? where titulo = ?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, filmVO.getCaminhoImagem());
-            pst.setFloat(2, filmVO.getDuracaoEspera());
-            pst.setString(3, filmVO.getTitulo());
+            pst.setString(2, filmVO.getNomeAtor());
+            pst.setString(3, filmVO.getNacionalidade());
+            pst.setFloat(4, filmVO.getDuracaoEspera());
+            pst.setString(5, filmVO.getTitulo());
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("\nErro ao atualizar filme!\n" + ex.getMessage());

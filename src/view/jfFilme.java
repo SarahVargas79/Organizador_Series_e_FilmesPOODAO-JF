@@ -582,8 +582,6 @@ public class jfFilme extends javax.swing.JFrame {
         jbSalvar.setText("Confirmar");
         jtfTitulo.setEnabled(false);
         jtfAnoLancamento.setEnabled(false);
-        jtfAtores.setEnabled(false);
-        jtfNacionalidade.setEnabled(false);
         jtfGenero.setEnabled(false);
         jtfEmail.setEnabled(false);
         jbLimpar.setText("Cancelar");

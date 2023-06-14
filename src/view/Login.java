@@ -146,7 +146,7 @@ public class Login extends javax.swing.JFrame {
                 jlEsqueciSenhaMouseClicked(evt);
             }
         });
-        jPanel1.add(jlEsqueciSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 140, -1));
+        jPanel1.add(jlEsqueciSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, 250, -1));
 
         jbCriarConta.setBackground(new java.awt.Color(0, 0, 204));
         jbCriarConta.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
@@ -226,7 +226,7 @@ public class Login extends javax.swing.JFrame {
                 MenuPrincipal menuP = new MenuPrincipal();
                 menuP.setVisible(true);
                 menuP.logado(jtfEmail.getText());
-
+                setVisible(false);//Para esconder a tela de Login
                 JOptionPane.showMessageDialog(this, "Seja Bem-Vindo");
             } else {
                 JOptionPane.showMessageDialog(this, "Dados de login não conferem");

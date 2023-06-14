@@ -108,12 +108,14 @@ public class SerieDAO {
 
         try {
             Connection con = Conexao.getConexao();
-            String sql = "update series set caminhoImagem = ?, temporada = ?, episodio = ? where titulo = ?";
+            String sql = "update series set caminhoImagem = ?, nomeAtor = ?, nacionalidade = ?, temporada = ?, episodio = ? where titulo = ?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, sVO.getCaminhoImagem());
-            pst.setInt(2, sVO.getTemporada());
-            pst.setInt(3, sVO.getEpisodio());
-            pst.setString(4, sVO.getTitulo());
+            pst.setString(2, sVO.getNomeAtor());
+            pst.setString(3, sVO.getNacionalidade());
+            pst.setInt(4, sVO.getTemporada());
+            pst.setInt(5, sVO.getEpisodio());
+            pst.setString(6, sVO.getTitulo());
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("\nErro ao atualizar série!\n" + ex.getMessage());
