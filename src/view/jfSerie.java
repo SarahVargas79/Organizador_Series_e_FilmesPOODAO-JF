@@ -757,13 +757,14 @@ public class jfSerie extends javax.swing.JFrame {
 
     public void pesquisaSerie() {
         String mail = MenuPrincipal.emailLogado;
-        String sql = "select series.*, e.email from series join usuarios e using(idUsuario) where titulo like ? and e.email = ?";//' para executar para o banco(mysql)
-
+        String sql = "select series.*, e.email from series join usuarios e using(idUsuario) where titulo like ? and e.email = ? and caminhoImagem = ?";//' para executar para o banco(mysql)
+        
         try {//Para tratar erros
             Connection con = Conexao.getConexao();
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, jtfPesquisa.getText() + "%");
             pst.setString(2, mail);
+            pst.setString(3, jlImagem.getText());
             ResultSet rs = pst.executeQuery();//ResultSet estrutura no java, é um meio de campo entre o banco de dados e o java(aplicação).
             jtSeries.setModel(DbUtils.resultSetToTableModel(rs));
         } catch (SQLException erro) {
